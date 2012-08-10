@@ -1,7 +1,7 @@
 <?php
 
 $yii=dirname(__FILE__).'/framework/yii.php';
-$config=dirname(__FILE__).'/shops/config/main.php';
+$config=dirname(__FILE__).'/shops/admin/config/main.php';
 
 defined('YII_DEBUG') or define('YII_DEBUG',true);
 require_once($yii);

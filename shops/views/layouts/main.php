@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/life/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 <body>
@@ -12,7 +12,7 @@
 			<div id="logo"><?php echo CHtml::link(CHtml::encode(Yii::app()->name),array('/'),array('id'=>'loginButton')); ?></div>
 			<div id="accounts">
 				<ul>
-					<li><?php echo CHtml::link('登录',array('accounts/login'),array('id'=>'loginButton'));?></li>
+					<li><?php echo CHtml::link('登录',array('accounts/login?go_url='.$this->getReturnUrl()),array('id'=>'loginButton'));?></li>
 					<li><?php echo CHtml::link('注册',array('accounts/register'),array('id'=>'registerButton'));?></li>
 				</ul>
 			</div>
@@ -35,7 +35,7 @@
 			<?php include('_sitemap.php');?>
 			<div class='clear'></div>
 			<div id="copyright">
-				Copyright &copy; <?php echo date('Y').Yii::app()->params['copyrightInfo']; ?>All Rights Reserved.<br/>
+				Copyright &copy; <?php echo date('Y').' '.Yii::app()->params['copyrightInfo']; ?>All Rights Reserved.<br/>
 			</div>
 		</div>
 	</div>

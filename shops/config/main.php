@@ -13,7 +13,7 @@ return array(
 						'allowAutoLogin'=>true,
 				),
 				'db'=>array(
-						'connectionString' => 'mysql:host=localhost;dbname=life',
+						'connectionString' => 'mysql:host=localhost;dbname=shops',
 						'emulatePrepare'   => true,
 						'username'          => 'root',
 						'password'          => 'lovelp',

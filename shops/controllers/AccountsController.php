@@ -15,6 +15,17 @@ class AccountsController extends BaseController {
 	 */
 	public function actionLogin() {
 		$this->pageTitle = CHtml::encode(Yii::app()->params['title']) .'| login';
+		
+		$login = $this->getRequestParam('login');
+		if ( ! empty( $login ) ) {
+			$goUrl = $this->getRequestParam('go_url');
+			if ( ! empty($goUrl) ) {
+				$this->redirect( $goUrl );
+			} else {
+				$this->redirect( Yii::app()->user->returnUrl );
+			}
+		}		
+		
 		$this->render( 'login' , array(
 	
 		) );
