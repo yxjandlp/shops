@@ -1,7 +1,7 @@
 <?php
 return array(
 		'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-		'name' => '这里是网站的名称',
+		'name' => '网站名称',
 		'import'=>array(
 				'application.models.*',
 				'application.common.classes.*',
