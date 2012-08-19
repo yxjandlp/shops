@@ -3,6 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+    <?php Yii::app()->clientScript->registerCoreScript('jquery');?>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 <body>
@@ -11,10 +12,14 @@
 		<div id="header_main">
 			<div id="logo"><?php echo CHtml::link(CHtml::encode(Yii::app()->name),array('/'),array('id'=>'loginButton')); ?></div>
 			<div id="accounts">
-				<ul>
-					<li><?php echo CHtml::link('登录',array('accounts/login?go_url='.$this->getReturnUrl()),array('id'=>'loginButton'));?></li>
-					<li><?php echo CHtml::link('注册',array('accounts/register'),array('id'=>'registerButton'));?></li>
-				</ul>
+                <?php $this->widget('zii.widgets.CMenu',array(
+                'items'=>array(
+                    array('label'=>'登录', 'url'=>'login?go_url='.$this->getReturnUrl(),'linkOptions'=>array('id'=>'loginButton'), 'visible'=>Yii::app()->user->isGuest),
+                    array('label'=>'注册', 'url'=>'register', 'linkOptions'=>array('id'=>'registerButton'), 'visible'=>Yii::app()->user->isGuest),
+                    array('label'=>'注销 ('.Yii::app()->user->name.')', 'url'=>'logout', 'visible'=>!Yii::app()->user->isGuest)
+                ),
+                'firstItemCssClass'=>'first_horizon_menu',
+            )); ?>
 			</div>
 		</div>
 	</div>
@@ -22,12 +27,14 @@
 		<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'栏目一', 'url'=>array('')),
-				array('label'=>'栏目二', 'url'=>array('', 'view'=>'about')),
-				array('label'=>'栏目三', 'url'=>array('')),
-				array('label'=>'栏目四', 'url'=>array(''), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'商家联盟', 'url'=>array('')),
+				array('label'=>'杂志专区', 'url'=>array('')),
+				array('label'=>'营销大区', 'url'=>array('')),
+				array('label'=>'音乐家族', 'url'=>array('')),
+                array('label'=>'摄影家族', 'url'=>array('')),
+                array('label'=>'创业创新课题', 'url'=>array('')),
 			),
-		)); ?>	
+		)); ?>
 		<div class='clear'></div>
 		</div>
 		<?php echo $content; ?>

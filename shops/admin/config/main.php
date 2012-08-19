@@ -10,6 +10,7 @@ return array(
 		'controllerPath' => $admin.'/controllers',
 		'viewPath' => $admin.'/views',
 		'runtimePath' => $admin.'/runtime',
+        'language'=>'zh_cn',
 		
 		'defaultController'=>'admin',
 		
@@ -33,8 +34,6 @@ return array(
 		),
 		
 		'import' => array(
-				'admin.models.*',
-				'admin.components.*',
 				'admin.models.*',
 				'frontend.models.*',
 				'frontend.common.classes.*',

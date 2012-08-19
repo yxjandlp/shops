@@ -1,4 +1,4 @@
-<div class='block_title'>店铺...</div>
+<div class='block_title'>商家联盟...</div>
 <div id="shops_list">
 <div class='shop' style='background-color:#15ADEF;'>店辅一</div>
 <div class='shop' style='background-color:#CCC2B9'>店辅二</div>

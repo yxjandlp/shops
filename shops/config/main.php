@@ -1,33 +1,43 @@
 <?php
 return array(
-		'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-		'name' => '网站名称',
-		'import'=>array(
-				'application.models.*',
-				'application.common.classes.*',
-				'application.common.config.*',
-		),
-		'defaultController'=>'site',
-		'components'=>array(
-				'user'=>array(
-						'allowAutoLogin'=>true,
-				),
-				'db'=>array(
-						'connectionString' => 'mysql:host=localhost;dbname=shops',
-						'emulatePrepare'   => true,
-						'username'          => 'root',
-						'password'          => 'lovelp',
-						'charset'           => 'utf8',
-		
-				),
-				'urlManager'=>array(
-						'urlFormat'=>'path',
-						'showScriptName' => false,
-						'rules' => array(
-								'login/' => 'site/login',
-								'register/' => 'site/register',
-						)
-				),
-		),
-		'params'=>require(dirname(__FILE__).'/params.php'),
+    'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+    'language'=>'zh_cn',
+    'modules'=>array(
+        'gii'=>array(
+            'class'=>'system.gii.GiiModule',
+            'password'=>'lovelp',
+        ),
+    ),
+    'name' => '网站名称',
+    'import'=>array(
+        'application.models.*',
+        'application.common.classes.*',
+        'application.common.config.*',
+        'application.components.*',
+    ),
+    'defaultController'=>'site',
+    'components'=>array(
+        'user'=>array(
+            'allowAutoLogin' => true,
+            'loginUrl' => 'login',
+        ),
+        'db'=>array(
+            'connectionString' => 'mysql:host=localhost;dbname=shops',
+            'emulatePrepare'   => true,
+            'username'          => 'root',
+            'password'          => 'lovelp',
+            'charset'           => 'utf8',
+        ),
+        'urlManager'=>array(
+            'urlFormat'=>'path',
+            'showScriptName' => false,
+            'rules' => array(
+                'login/' => 'accounts/login',
+                'register/' => 'accounts/register',
+                'logout/' => 'accounts/logout',
+                'registerSuccess' => 'accounts/registerSuccess',
+            )
+        ),
+    ),
+    'params'=>require(dirname(__FILE__).'/params.php'),
 );

@@ -45,7 +45,7 @@ a:hover{
 #accounts a:hover{
 	text-decoration:underline;
 }
-#loginButton{
+.first_horizon_menu{
 	margin-right:10px;
 }
 #header_main ,#content{
@@ -69,7 +69,7 @@ a:hover{
 	text-decoration:none;
 	height:40px;
 	line-height:40px;
-	font-size:30px;
+	font-size:22px;
 }
 .shop{
 	width:312px;
