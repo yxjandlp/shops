@@ -1,0 +1,21 @@
+.txt_input {
+    width: 250px;
+    font-size: 13px;
+    padding: 6px 5px;
+    border-radius: 3px 3px 3px 3px;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 2px 2px #DEDEDE inset;
+    color: #777777;
+    cursor: text;
+}
+.blue_btn {
+    background: white url('../images/register.gif') no-repeat -5px top;
+    border: 1px solid #3282D0;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    padding: 3px 10px;
+    text-align: center;
+}

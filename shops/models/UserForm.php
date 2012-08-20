@@ -22,6 +22,7 @@ class UserForm extends CFormModel {
             array('username', 'required', 'on'=>'login,register', 'message'=>'用户名不能为空'),
             array('password', 'required', 'on'=>'login,register', 'message'=>'密码不能为空'),
             array('password2', 'required', 'on'=>'register', 'message'=>'请确认密码'),
+            array('username','match','pattern'=>'/^[\w]{6,20}$/','on'=>'register','message'=>'用户名格式错误'),
             array('username', 'validateUsername', 'on'=>'register'),
             array('password', 'length', 'min'=>6, 'on'=>'register', 'message'=>'密码长度不能小于6位'),
             array('password2', 'compare', 'compareAttribute'=>'password', 'on'=>'register', 'message'=>'两次输入的密码不一致'),
@@ -75,16 +76,10 @@ class UserForm extends CFormModel {
      */
     public function validateUsername($attribute,$params) {
         if ($this->username) {
-            $pattern = '/^[\w]{6,20}$/';
-            if ( ! preg_match($pattern, $this->username) ) {
-                $this->addError('username',"用户名为数字、字母、下划线_的组合，长度为6-20位");
-            } else {
-                $model = User::model()->getUserByUsername($this->username);
-                if ($model) {
-                    $this->addError('username',"用户名已被注册");
-                }
+            $model = User::model()->getUserByUsername($this->username);
+            if ($model) {
+                $this->addError('username',"用户名已被注册");
             }
-
         }
     }
 
