@@ -13,6 +13,9 @@ a:link,a:visited{
 li{
     list-style-type: none;
 }
+.error_msg{
+    color: #ff0000;
+}
 .clear{
     clear:both;
 }
@@ -36,7 +39,7 @@ li{
     padding-left: 20px;
     color: #ffffff;
     font-size: 15px;
-    background: url("../images/admin/arrow.png") no-repeat scroll 96% -5px #494949;
+    background: url("../../images/admin/arrow.png") no-repeat scroll 96% -5px #494949;
     border-bottom: 1px solid #313131;
     border-top: 1px solid #606060;
 }
@@ -50,5 +53,5 @@ li{
 #header{
     height: 36px;
     border: 1px solid #000000;
-    background: #ffffff url("../images/admin/top_bg.png") repeat-x;
+    background: #ffffff url("../../images/admin/top_bg.png") repeat-x;
 }

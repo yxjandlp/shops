@@ -1,6 +1,6 @@
 <?php
 return array(
-		'title' => 'title',
+		'title' => '大学窝',
 		'copyrightInfo' => 'Company.',
 		'appVertion' => '1.0',
 );

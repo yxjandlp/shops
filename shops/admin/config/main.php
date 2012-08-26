@@ -6,7 +6,7 @@ Yii::setPathOfAlias('frontend', $frontend);
 
 return array(
 		'basePath' => $frontend,
-        'name' => '网站名称',
+        'name' => '大学窝',
 		'controllerPath' => $admin.'/controllers',
 		'viewPath' => $admin.'/views',
 		'runtimePath' => $admin.'/runtime',

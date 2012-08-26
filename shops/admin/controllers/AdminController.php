@@ -42,9 +42,5 @@ class AdminController extends BaseController {
      */
 	public function actionHome() {
         $this->pageTitle = Yii::app()->name . ' | admin';
-
-        $this->render('home' , array(
-
-        ));
     }
 }
