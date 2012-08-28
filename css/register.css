@@ -37,3 +37,22 @@
     padding-top: 5px;
     clear: both;
 }
+.regForm{
+    width: 550px;
+    float: left;
+}
+#goto_shop_register {
+    width: 429px;
+    border-left: 1px dotted #777777;
+    margin-top: 20px;
+    height: 400px;
+    float: left;
+    text-align: center;
+    line-height: 400px;
+}
+#goto_shop_register a{
+    font-size: 20px;
+}
+#goto_shop_register a:hover{
+    text-decoration: underline;
+}

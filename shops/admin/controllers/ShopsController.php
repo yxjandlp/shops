@@ -7,7 +7,6 @@
  */
 class ShopsController extends BaseController
 {
-
     /**
      * 商家列表显示界面
      */
@@ -18,10 +17,12 @@ class ShopsController extends BaseController
         if ( empty($shopsList) ) {
             $isListEmpty = true;
         }
+        $dataProvider=new CActiveDataProvider('Shops');
 
         $this->render('index', array(
             'shopsList'   => $shopsList,
-            'isListEmpty' => $isListEmpty
+            'isListEmpty' => $isListEmpty,
+            'dataProvider' => $dataProvider
         ));
     }
 

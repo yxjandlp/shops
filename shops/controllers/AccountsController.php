@@ -20,7 +20,7 @@ class AccountsController extends BaseController {
      * @param $filterChain
      */
     public function filterCheckLogin($filterChain) {
-        $filterArray = array('login', 'register', 'registerSuccess');
+        $filterArray = array('login', 'register', 'registerSuccess', 'shopRegisterSuccess');
         if ( ! Yii::app()->user->isGuest && in_array($this->action->id, $filterArray) ) {
             $this->redirect(Yii::app()->homeUrl);
         }
@@ -39,7 +39,7 @@ class AccountsController extends BaseController {
                 'users'=>array('@'),
             ),
             array('allow',
-                'actions'=>array('index', 'login', 'register', 'RegisterSuccess'),
+                'actions'=>array('index', 'login', 'register', 'shopRegister', 'RegisterSuccess','shopRegisterSuccess'),
                 'users'=>array('*'),
             ),
             array('deny',
@@ -122,5 +122,45 @@ class AccountsController extends BaseController {
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
     }
+
+    /**
+     * 商家加盟
+     */
+    public function actionShopRegister()
+    {
+        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) .'| 商家加盟';
+        $model = new ShopForm();
+        $shopInfoArray = $this->getRequestParam('ShopForm');
+        if ( ! empty($shopInfoArray) ){
+            $model->attributes = $shopInfoArray;
+            $shopImage = CUploadedFile::getInstance($model,'image');
+            $model->image = $shopImage;
+            if ($model->validate()) {
+                $joinTime = time();
+                $model->join_time = $joinTime;
+                $model->image = $joinTime.'.'.$shopImage->extensionName;
+                $model->admin_pwd = sha1($shopInfoArray['admin_pwd']);
+
+                if ( ( $insertId = $model->addShop()) &&  $shopImage->saveAs('assets/upload/'.$model->image) )
+                    $this->redirect('shopRegisterSuccess?insertId='.$insertId);
+            }
+        }
+
+        $this->render('shop_register', array(
+            'model' => $model
+        ));
+    }
+
+    /**
+     * 商家注册成功页面
+     */
+    public function actionShopRegisterSuccess()
+    {
+        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) .'| 加盟成功';
+        $this->render('shop_register_success', array(
+            'lastInsertId' => str_pad( $this->getRequestParam('insertId'), 5, '0' , STR_PAD_LEFT),
+        ));
+    }
+
 
 }

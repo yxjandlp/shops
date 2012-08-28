@@ -8,7 +8,7 @@ return array(
             'password'=>'lovelp',
         ),
     ),
-    'name' => '网站名称',
+    'name' => '大学窝',
     'import'=>array(
         'application.models.*',
         'application.common.classes.*',
