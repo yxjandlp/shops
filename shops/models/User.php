@@ -120,7 +120,7 @@ class User extends CActiveRecord
      * @return boolean whether the password is valid
      */
     public function validatePassword($password) {
-        return sha1($password)===$this->password;
+        return sha1($password) == $this->password;
     }
 
     /**

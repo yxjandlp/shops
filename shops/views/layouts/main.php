@@ -18,7 +18,8 @@
                 'items'=>array(
                     array('label'=>'登录', 'url'=>'login?go_url='.$this->getReturnUrl(),'linkOptions'=>array('id'=>'loginButton'), 'visible'=>Yii::app()->user->isGuest),
                     array('label'=>'注册', 'url'=>'register', 'linkOptions'=>array('id'=>'registerButton'), 'visible'=>Yii::app()->user->isGuest),
-                    array('label'=>'注销 ('.Yii::app()->user->name.')', 'url'=>'logout', 'visible'=>!Yii::app()->user->isGuest)
+                    array('label'=>'注销 ('.Yii::app()->user->name.')', 'url'=>'logout', 'visible'=>!Yii::app()->user->isGuest),
+                    array('label'=>'进入我的店辅', 'url'=>'', 'visible'=>(Yii::app()->user->getState('role')=='shop'))
                 ),
                 'firstItemCssClass'=>'first_horizon_menu',
             )); ?>

@@ -22,7 +22,7 @@ class UserIdentity extends CUserIdentity
 	public function authenticate()
 	{
         $user=User::model()->find('LOWER(username)=?',array(strtolower($this->username)));
-        if( $user === null )
+        if( $user == null )
             $this->errorCode=self::ERROR_USERNAME_INVALID;
         else if(!$user->validatePassword($this->password))
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
@@ -30,6 +30,7 @@ class UserIdentity extends CUserIdentity
         {
             $this->_id=$user->id;
             $this->_username=$user->username;
+            Yii::app()->user->setState('role','member');
             $this->errorCode=self::ERROR_NONE;
         }
         return $this->errorCode==self::ERROR_NONE;

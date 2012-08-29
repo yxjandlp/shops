@@ -19,3 +19,25 @@
     padding: 3px 10px;
     text-align: center;
 }
+.loginForm {
+    width: 490px;
+    float: left;
+}
+#goto_shop_login {
+    width: 489px;
+    border-left: 1px dotted #777777;
+    margin-top: 20px;
+    height: 200px;
+    float: left;
+    text-align: center;
+    line-height: 200px;
+}
+#goto_shop_login a{
+    font-size: 20px;
+}
+#goto_shop_login a:hover{
+    text-decoration: underline;
+}
+.errorSummary li{
+    color: red;
+}

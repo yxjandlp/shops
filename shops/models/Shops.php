@@ -119,6 +119,9 @@ class Shops extends CActiveRecord
 
     /**
      * 添加商家
+     *
+     * @param array $attributes
+     * @return int id
      */
     public function addShop($attributes) {
         $shop = new Shops();
@@ -130,5 +133,14 @@ class Shops extends CActiveRecord
         $shop->setAttribute('is_active', self::IS_ACTIVE);
         $shop->save();
         return $shop->id;
+    }
+
+    /**
+     * 验证密码
+     *
+     * @param string $password
+     */
+    public function validatePassword( $password ) {
+        return sha1($password) == $this->admin_pwd;
     }
 }

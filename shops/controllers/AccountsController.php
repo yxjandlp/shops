@@ -20,7 +20,7 @@ class AccountsController extends BaseController {
      * @param $filterChain
      */
     public function filterCheckLogin($filterChain) {
-        $filterArray = array('login', 'register', 'registerSuccess', 'shopRegisterSuccess');
+        $filterArray = array('login', 'register', 'registerSuccess', 'shopRegisterSuccess', 'shopLogin');
         if ( ! Yii::app()->user->isGuest && in_array($this->action->id, $filterArray) ) {
             $this->redirect(Yii::app()->homeUrl);
         }
@@ -39,7 +39,7 @@ class AccountsController extends BaseController {
                 'users'=>array('@'),
             ),
             array('allow',
-                'actions'=>array('index', 'login', 'register', 'shopRegister', 'RegisterSuccess','shopRegisterSuccess'),
+                'actions'=>array('index', 'login', 'register', 'shopRegister', 'RegisterSuccess','shopRegisterSuccess', 'shopLogin'),
                 'users'=>array('*'),
             ),
             array('deny',
@@ -59,7 +59,7 @@ class AccountsController extends BaseController {
 	 * 登录动作
 	 */
 	public function actionLogin() {
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) .'| login';
+        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) .'| 登录';
 
         $model = new UserForm('login');
         $loginInfoArray = $this->getRequestParam('UserForm');
@@ -83,7 +83,7 @@ class AccountsController extends BaseController {
 	 * 注册动作
 	 */
 	public function actionRegister() {
-		$this->pageTitle = CHtml::encode(Yii::app()->params['title']) .'| register';
+		$this->pageTitle = CHtml::encode(Yii::app()->params['title']) .'| 注册';
         $model = new UserForm('register');
 
         $ajaxForm = $this->getRequestParam('ajax');
@@ -129,7 +129,8 @@ class AccountsController extends BaseController {
     public function actionShopRegister()
     {
         $this->pageTitle = CHtml::encode(Yii::app()->params['title']) .'| 商家加盟';
-        $model = new ShopForm();
+
+        $model = new ShopForm('register');
         $shopInfoArray = $this->getRequestParam('ShopForm');
         if ( ! empty($shopInfoArray) ){
             $model->attributes = $shopInfoArray;
@@ -157,10 +158,30 @@ class AccountsController extends BaseController {
     public function actionShopRegisterSuccess()
     {
         $this->pageTitle = CHtml::encode(Yii::app()->params['title']) .'| 加盟成功';
+
         $this->render('shop_register_success', array(
             'lastInsertId' => str_pad( $this->getRequestParam('insertId'), 5, '0' , STR_PAD_LEFT),
         ));
     }
 
+    /**
+     * 登录动作
+     */
+    public function actionShopLogin()
+    {
+        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) .'| 商家登录';
+
+        $model = new ShopForm('login');
+        $loginInfoArray = $this->getRequestParam('ShopForm');
+        if( $loginInfoArray ){
+            $model->attributes = $loginInfoArray;
+            if($model->validate() && $model->login()){
+                $this->redirect(Yii::app()->homeUrl);
+            }
+        }
+        $this->render('shop_login',array(
+            'model' => $model,
+        ));
+    }
 
 }

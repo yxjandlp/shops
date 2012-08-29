@@ -3,10 +3,10 @@ return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
     'language'=>'zh_cn',
     'modules'=>array(
-        'gii'=>array(
+/*        'gii'=>array(
             'class'=>'system.gii.GiiModule',
             'password'=>'lovelp',
-        ),
+        ),*/
     ),
     'name' => '大学窝',
     'import'=>array(
