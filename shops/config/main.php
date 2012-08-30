@@ -3,10 +3,10 @@ return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
     'language'=>'zh_cn',
     'modules'=>array(
-/*        'gii'=>array(
+        'gii'=>array(
             'class'=>'system.gii.GiiModule',
             'password'=>'lovelp',
-        ),*/
+        ),
     ),
     'name' => '大学窝',
     'import'=>array(
@@ -19,7 +19,7 @@ return array(
     'components'=>array(
         'user'=>array(
             'allowAutoLogin' => true,
-            'loginUrl' => 'login',
+            'loginUrl' => array('login/')
         ),
         'db'=>array(
             'connectionString' => 'mysql:host=localhost;dbname=shops',
@@ -36,6 +36,8 @@ return array(
                 'register/' => 'accounts/register',
                 'logout/' => 'accounts/logout',
                 'registerSuccess' => 'accounts/registerSuccess',
+                'shop/<id:\w+>'=> 'shop/index',
+                'note/<id:\w+>'=>'shop/note'
             )
         ),
     ),

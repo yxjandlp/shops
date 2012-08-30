@@ -142,7 +142,7 @@ class AccountsController extends BaseController {
                 $model->image = $joinTime.'.'.$shopImage->extensionName;
                 $model->admin_pwd = sha1($shopInfoArray['admin_pwd']);
 
-                if ( ( $insertId = $model->addShop()) &&  $shopImage->saveAs('assets/upload/'.$model->image) )
+                if ( ( $insertId = $model->addShop()) &&  $shopImage->saveAs('assets/shops/upload/'.$model->image) )
                     $this->redirect('shopRegisterSuccess?insertId='.$insertId);
             }
         }

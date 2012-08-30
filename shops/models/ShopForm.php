@@ -29,6 +29,7 @@ class ShopForm extends CFormModel
             array('admin_pwd','required', 'on'=>'login, register'),
             array('id', 'required', 'on'=>'login'),
             array('title', 'length', 'max'=>100, 'on'=>'register'),
+            array('description','length', 'max'=>5120 , 'on'=>'register'),
             array('image', 'file', 'types'=>'jpg,gif,png', 'maxSize'=>204800, 'on'=>'register'),
             array('admin_pwd', 'length', 'min'=>6, 'on'=>'register'),
             array('confirm_pwd', 'compare', 'compareAttribute'=>'admin_pwd', 'message'=>'两次输入的密码不一致', 'on'=>'register'),

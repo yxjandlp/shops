@@ -7,11 +7,12 @@ class SiteController extends BaseController {
 	 * the main page of site
 	 */
 	public function actionIndex() {
-		$this->pageTitle = CHtml::encode(Yii::app()->params['title']) . '| home';
+        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . '| 首页';
+
+        $shops = Shops::model()->getAllShopsList();
 		$this->render( 'index' , array(
-				
+            'shops' => $shops
 		) );
 	}
-	
 
 }
