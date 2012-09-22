@@ -10,8 +10,15 @@
 <div class='clear'></div>
 </div>-->
 <div class='block_title'>商家联盟...</div>
-<ul>
-    <?php foreach($shops as $shop):?>
-    <li><?php echo  CHtml::link( $shop['title'], array('shop/'.$shop['id']));?></li>
-    <?php endforeach;?>
-</ul>
+<?php  foreach( $shopGroups as $shopGroup ): ?>
+    <?php echo $shopGroup['category'];?>
+    <ul>
+        <?php if( ! empty($shopGroup['shops']) ):?>
+        <?php  foreach($shopGroup['shops'] as $shop): ?>
+        <li><?php echo  CHtml::link( $shop['shop']['title'], Yii::app()->createUrl('shop/show',array('id'=>$shop['shop']['id'])));?></li>
+        <?php endforeach;?>
+        <?php else:?>
+        <li>--暂无--</li>
+        <?php endif;?>
+    </ul>
+<?php  endforeach; ?>

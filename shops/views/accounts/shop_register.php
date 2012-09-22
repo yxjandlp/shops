@@ -16,6 +16,12 @@
             <td><?php echo $form->error($model,'title',array('class'=>'error_msg'));?></td>
         </tr>
         <tr>
+            <td><?php echo $form->labelEx($model,'category'); ?></td>
+            <td><?php echo $form->dropDownList($model, 'category',$categoryList); ?>
+            </td>
+            <td><?php echo $form->error($model,'title',array('class'=>'error_msg'));?></td>
+        </tr>
+        <tr>
             <td><?php echo $form->labelEx($model,'admin_pwd'); ?></td>
             <td><?php echo $form->passwordField($model,'admin_pwd') ?></td>
             <td><?php echo $form->error($model,'admin_pwd',array('class'=>'error_msg'));?></td>
@@ -45,16 +51,12 @@
             <td>&nbsp;</td>
             <td>
                 <?php echo CHtml::SubmitButton('确定', array('name'=>'add_shop', 'id'=>'register_shop'));?>&nbsp;
-                <?php echo CHtml::button('取消', array('id'=>'cancel'));?>
             </td>
         </tr>
     </table>
     <?php $this->endWidget();?>
 </div>
 <script type="text/javascript">
-    document.getElementById('cancel').onclick = function(){
-        location = 'index';
-    }
     $(document).ready(function(){
        $('#register_shop').click(function(){
            if ($('#ShopForm_title').val().trim() == '') {

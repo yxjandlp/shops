@@ -14,6 +14,7 @@ class ShopForm extends CFormModel
     public $admin_pwd;
     public $confirm_pwd;
     public $join_time;
+    public $category;
 
     private $_identity;
 
@@ -25,7 +26,7 @@ class ShopForm extends CFormModel
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('title, description, image, confirm_pwd', 'required', 'on'=>'register'),
+            array('title, category, description, image, confirm_pwd', 'required', 'on'=>'register'),
             array('admin_pwd','required', 'on'=>'login, register'),
             array('id', 'required', 'on'=>'login'),
             array('title', 'length', 'max'=>100, 'on'=>'register'),
@@ -45,6 +46,7 @@ class ShopForm extends CFormModel
         return array(
             'id' => '店辅编号',
             'title' => '商家标题',
+            'category' => '选择分类',
             'description' => "商家描述",
             "image" => "商家图片",
             'admin_pwd' => '管理密码',
@@ -89,5 +91,22 @@ class ShopForm extends CFormModel
         } else {
             return false;
         }
+    }
+
+    /**
+     * 添加商家至指定分类
+     *
+     * @param mixed $shopId
+     * @return boolean
+     */
+    public function addShopToCategory( $shopId )
+    {
+        if ( $this->category ) {
+            $model = new ShopToCategory();
+            $model->shop_id = $shopId;
+            $model->category_id = $this->category;
+            return $model->save();
+        }
+        return false;
     }
 }

@@ -18,10 +18,11 @@
                 'items'=>array(
                     array('label'=>'登录', 'url'=>Yii::app()->homeUrl.'login?go_url='.$this->getReturnUrl(),'linkOptions'=>array('id'=>'loginButton'), 'visible'=>Yii::app()->user->isGuest),
                     array('label'=>'注册', 'url'=>array('register/'), 'linkOptions'=>array('id'=>'registerButton'), 'visible'=>Yii::app()->user->isGuest),
-                    array('label'=>'注销 ('.Yii::app()->user->name.')', 'url'=>array('logout/'), 'visible'=>!Yii::app()->user->isGuest),
-                    array('label'=>'进入我的店辅', 'url'=>'', 'visible'=>(Yii::app()->user->getState('role')=='shop'))
+                    array('label'=>Yii::app()->user->name, 'visible'=>!Yii::app()->user->isGuest),
+                    array('label'=>'进入我的店辅', 'url'=>Yii::app()->createUrl('shop/show',array('id'=>Yii::app()->user->getId())), 'visible'=>(Yii::app()->user->getState('role')=='shop')),
+                    array('label'=>'注销', 'url'=>array('logout/'), 'visible'=>!Yii::app()->user->isGuest),
                 ),
-                'firstItemCssClass'=>'first_horizon_menu',
+                'itemCssClass'=>'top_menu',
             )); ?>
 			</div>
 		</div>
@@ -30,12 +31,12 @@
 		<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'商家联盟', 'url'=>array('')),
-				array('label'=>'杂志专区', 'url'=>array('')),
-				array('label'=>'营销大区', 'url'=>array('')),
-				array('label'=>'音乐家族', 'url'=>array('')),
-                array('label'=>'摄影家族', 'url'=>array('')),
-                array('label'=>'创业创新课题', 'url'=>array('')),
+				array('label'=>'商家联盟', 'url'=>array('/')),
+				array('label'=>'杂志专区', 'url'=>array('/')),
+				array('label'=>'营销大区', 'url'=>array('/')),
+				array('label'=>'音乐家族', 'url'=>array('/')),
+                array('label'=>'摄影家族', 'url'=>array('/')),
+                array('label'=>'创业创新课题', 'url'=>array('/')),
 			),
 		)); ?>
 		<div class='clear'></div>
