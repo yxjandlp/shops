@@ -1,0 +1,7 @@
+##这里记录下对数据字典的处理##
+##包括添加、修改、删除操作####
+##并附上相应sql语句###########
+
+##20120923##
+##yaoxianjin##
+alter table `user` drop column show_owner;

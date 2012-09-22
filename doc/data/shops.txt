@@ -1,0 +1,57 @@
+//用户表
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `join_time` int(10) NOT NULL,
+  `is_active` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+//商家表
+CREATE TABLE IF NOT EXISTS `shops` (
+  `id` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `image` char(14) NOT NULL,
+  `join_time` int(10) unsigned NOT NULL,
+  `admin_pwd` varchar(40) NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+//商家分类表
+CREATE TABLE IF NOT EXISTS `shop_category` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+//添加分类数据
+INSERT INTO `shop_category` (`id`, `name`) VALUES
+(1, '华侨大学'),
+(2, '厦门大学'),
+(3, '厦门理工'),
+(4, '诚毅学院'),
+(5, '集美大学'),
+(6, '厦门攻略');
+
+//商家分类关联表
+CREATE TABLE IF NOT EXISTS `shop_to_category` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` int(10) unsigned NOT NULL,
+  `shop_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+//用户留言表
+CREATE TABLE IF NOT EXISTS `note` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `shop_id` char(5) NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `message` varchar(200) NOT NULL,
+  `create_time` int(10) unsigned NOT NULL,
+  `is_handled` tinyint(1) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
