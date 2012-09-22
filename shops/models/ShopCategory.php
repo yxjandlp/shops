@@ -60,7 +60,7 @@ class ShopCategory extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'name' => '商家分类',
 		);
 	}
 

@@ -5,3 +5,5 @@
 ##20120923##
 ##yaoxianjin##
 alter table `user` drop column show_owner;
+alter table `shops` alter column is_active set default '0';
+

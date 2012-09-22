@@ -15,9 +15,14 @@
 class Shops extends CActiveRecord
 {
     /**
-     * 是否激活
+     * 通过审核
      */
     const IS_ACTIVE = 1;
+
+    /**
+     * 未通过审核
+     */
+    const NOT_ACTIVE = 0;
 
     /**
 	 * Returns the static model of the specified AR class.
@@ -75,13 +80,13 @@ class Shops extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id' => '店辅编号',
 			'title' => '商家标题',
 			'description' => '商家描述',
 			'image' => '商家图片',
 			'join_time' => '加入时间',
 			'admin_pwd' => '管理密码',
-			'is_active' => '是否激活',
+			'is_active' => '审核状态',
 		);
 	}
 
@@ -131,7 +136,7 @@ class Shops extends CActiveRecord
         $shop->setAttribute('image', $attributes['image']);
         $shop->setAttribute('admin_pwd', $attributes['admin_pwd']);
         $shop->setAttribute('join_time', $attributes['join_time']);
-        $shop->setAttribute('is_active', self::IS_ACTIVE);
+        $shop->setAttribute('is_active', self::NOT_ACTIVE);
         $shop->save();
         return $shop->id;
     }
