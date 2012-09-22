@@ -14,7 +14,7 @@ class SiteController extends BaseController {
         foreach ( $categories as $category ) {
             $criteria = new CDbCriteria();
             $criteria->with = array('category', 'shop');
-            $criteria->compare('category_id',$category['id']);
+            $criteria->compare('category_id', $category['id']);
             $criteria->limit = 5;
             $models = ShopToCategory::model()->findAll($criteria);
             $shopsArray[] = array(

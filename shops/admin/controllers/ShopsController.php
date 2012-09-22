@@ -12,25 +12,18 @@ class ShopsController extends BaseController
      */
     public function actionIndex()
     {
-        $shopsList = Shops::model()->getAllShopsList();
-        $isListEmpty = false;
-        if ( empty($shopsList) ) {
-            $isListEmpty = true;
+        $audit = $this->getRequestParam('audit', 'all');
+        $criteria = array('with'=>array('category', 'shop'));
+        if ( in_array($audit, array('0', '1'), true) ) {
+            $criteria['condition'] = 'is_active=:audit';
+            $criteria['params'] = array(':audit'=>$audit);
         }
-//        $dataProvider=new CActiveDataProvider('Shops');
         $dataProvider=new CActiveDataProvider('ShopToCategory', array(
-            'criteria'=>array(
-                'with'=>array('category', 'shop'),
-            ),
+            'criteria'=>$criteria,
         ));
-        $criteria = new CDbCriteria();
-        $criteria->with = array('category', 'shop');
-        $models = ShopToCategory::model()->findAll($criteria);
         $this->render('index', array(
-            'shopsList'   => $shopsList,
-            'isListEmpty' => $isListEmpty,
-            'models' => $models,
-            'dataProvider' => $dataProvider
+            'dataProvider' => $dataProvider,
+            'audit' => $audit
         ));
     }
 

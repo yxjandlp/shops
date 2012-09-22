@@ -1,10 +1,12 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/css/admin/shops.css');?>
 <div class="shop_list_tb">
-    <?php
-/*    $this->widget('zii.widgets.grid.CGridView', array(
-        'dataProvider'=>$dataProvider,
-    ));*/
-    ?>
+    <form action="" name="shop_list" id="shop_list" method="post">
+    审核状态：
+    <select name="audit" id="audit">
+        <option value="all" <?php if($audit=='all') echo 'selected="true"';?>>所有</option>
+        <option value="0" <?php if($audit==='0') echo 'selected="true"';?>>未通过</option>
+        <option value="1" <?php if($audit==='1') echo 'selected="true"';?>>通过</option>
+    </select>
     <?php
     $this->widget('zii.widgets.grid.CGridView', array(
         'selectableRows'=>2,
@@ -38,4 +40,10 @@
         <input type="button" value="通过审核">
         <input type="button" value="未通过审核">
     </div>
+    </form>
 </div>
+<script type="text/javascript">
+    $('#audit').change(function(){
+        $('#shop_list').submit();
+    });
+</script>

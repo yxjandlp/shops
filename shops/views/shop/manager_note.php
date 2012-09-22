@@ -1,8 +1,8 @@
 <form id="note_list" name="note_list" method="post" action="">
     <select id="filter" name="filter">
-        <option value="0" <?php if($filter=='0') echo "selected='true'";?>>所有留言</option>
-        <option value="1" <?php if($filter=='1') echo "selected='true'";?>>未处理</option>
-        <option value="2" <?php if($filter=='2') echo "selected='true'";?>>已处理</option>
+        <option value="all" <?php if($filter=='all') echo "selected='true'";?>>所有留言</option>
+        <option value="0" <?php if($filter=='0') echo "selected='true'";?>>未处理</option>
+        <option value="1" <?php if($filter=='1') echo "selected='true'";?>>已处理</option>
     </select>
     <?php
     $this->widget('zii.widgets.grid.CGridView', array(

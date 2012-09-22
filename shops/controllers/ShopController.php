@@ -49,22 +49,15 @@ class ShopController extends BaseController {
     {
         $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . '| 管理留言';
 
-        $filter = '0';
-        $filterValue =  $this->getRequestParam('filter');
-        if ( $filter != null ) {
-            $filter = $filterValue;
-        }
+        $filter =  $this->getRequestParam('filter');
         $noteIdArray =  $this->getRequestParam('select');
         if ( ! empty($noteIdArray) ) {
             Note::model()->updateAll(array('is_handled'=>1),'shop_id='.$id.' and id in('.implode(',',$noteIdArray).')');
         }
         $model = new Note('search');
         $model->shop_id = $id;
-        if ( ! empty($filter) ) {
-            if ( $filter == '1' )
-                $model->is_handled = 0;
-            else
-                $model->is_handled = 1;
+        if ( in_array($filter, array('0','1'), true) ) {
+            $model->is_handled = $filter;
         }
         $this->render('manager_note', array(
             'model' => $model,
@@ -132,7 +125,7 @@ class ShopController extends BaseController {
 
         $this->showSuccessMessage('删除成功', Yii::app()->createUrl('shop/manageNote', array('id'=>$shopId)));
     }
-
+//
     /**
      * 判断是否已处理
      */
