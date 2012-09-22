@@ -35,5 +35,7 @@
         <input type="button" value="增加" onclick="location='<?php echo Yii::app()->createUrl('shops/add') ;?>';" />
         <input type="button" value="修改" />
         <input type="button" value="删除">
+        <input type="button" value="通过审核">
+        <input type="button" value="未通过审核">
     </div>
 </div>
