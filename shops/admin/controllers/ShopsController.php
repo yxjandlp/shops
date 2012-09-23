@@ -5,7 +5,7 @@
  * Date: 12-8-21
  * Time: 下午9:29
  */
-class ShopsController extends BaseController
+class ShopsController extends AdminBaseController
 {
     /**
      * 商家列表显示界面

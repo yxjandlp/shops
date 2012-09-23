@@ -17,7 +17,7 @@
 <div id="goto_shop_login">
     <?php echo CHtml::link('&gt;&gt;商家登录入口', array('shopLogin'))?>
 </div>
-    <div class="clear"></div>
+<div class="clear"></div>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#login').click(function(){

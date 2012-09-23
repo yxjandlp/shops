@@ -51,7 +51,7 @@ class ShopController extends BaseController {
         if ( Yii::app()->user->isGuest || Yii::app()->user->getState('role') != 'shop' || Yii::app()->user->getId() != $id ) {
             $this->redirect(Yii::app()->homeUrl);
         }
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . '| 管理留言';
+        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 管理留言';
 
         $filter =  $this->getRequestParam('filter');
         $noteIdArray =  $this->getRequestParam('select');
@@ -75,7 +75,7 @@ class ShopController extends BaseController {
      */
     public function actionShow( $id )
     {
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . '| 商家';
+        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 商家';
         $shop = Shops::model()->findByPk($id);
         $this->render('index', array(
             'shop' => $shop
@@ -97,7 +97,7 @@ class ShopController extends BaseController {
      */
     public function actionNote( $id )
     {
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . '| 留言';
+        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 留言';
 
         $model = new Note();
         $noteInfo = $this->getRequestParam('Note');

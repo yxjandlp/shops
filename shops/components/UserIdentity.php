@@ -7,6 +7,10 @@
  */
 class UserIdentity extends CUserIdentity
 {
+    private $_id;
+    private $_username;
+    private $_role = 'member';
+
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -15,10 +19,6 @@ class UserIdentity extends CUserIdentity
 	 * against some persistent user identity storage (e.g. database).
 	 * @return boolean whether authentication succeeds.
 	 */
-
-    private $_id;
-    private $_username;
-
 	public function authenticate()
 	{
         $user=User::model()->find('LOWER(username)=?',array(strtolower($this->username)));
@@ -30,7 +30,7 @@ class UserIdentity extends CUserIdentity
         {
             $this->_id=$user->id;
             $this->_username=$user->username;
-            Yii::app()->user->setState('role','member');
+            Yii::app()->user->setState('role',$this->_role);
             $this->errorCode=self::ERROR_NONE;
         }
         return $this->errorCode==self::ERROR_NONE;

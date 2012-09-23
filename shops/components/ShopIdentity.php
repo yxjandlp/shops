@@ -7,6 +7,8 @@
  */
 class ShopIdentity extends CUserIdentity
 {
+    private $_id;
+
     /**
      * Authenticates a user.
      * The example implementation makes sure if the username and password
@@ -15,10 +17,6 @@ class ShopIdentity extends CUserIdentity
      * against some persistent user identity storage (e.g. database).
      * @return boolean whether authentication succeeds.
      */
-
-    private $_id;
-    private $_adminPassword;
-
     public function authenticate()
     {
         $shop = Shops::model()->find('id=?',array($this->username));
