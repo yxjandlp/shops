@@ -22,6 +22,7 @@ class ShopController extends BaseController {
             'accessControl' ,
         );
     }
+
     /**
      * 访问控制
      * @return array
@@ -47,6 +48,9 @@ class ShopController extends BaseController {
      */
     public function actionManageNote( $id )
     {
+        if ( Yii::app()->user->isGuest || Yii::app()->user->getState('role') != 'shop' || Yii::app()->user->getId() != $id ) {
+            $this->redirect(Yii::app()->homeUrl);
+        }
         $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . '| 管理留言';
 
         $filter =  $this->getRequestParam('filter');
@@ -72,7 +76,6 @@ class ShopController extends BaseController {
     public function actionShow( $id )
     {
         $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . '| 商家';
-
         $shop = Shops::model()->findByPk($id);
         $this->render('index', array(
             'shop' => $shop
@@ -82,8 +85,11 @@ class ShopController extends BaseController {
     /**
      * 编辑店辅
      */
-    public function actionEdit( $id ) {
-
+    public function actionEdit( $id )
+    {
+        if ( Yii::app()->user->isGuest || Yii::app()->user->getState('role') != 'shop' || Yii::app()->user->getId() != $id ) {
+            $this->redirect(Yii::app()->homeUrl);
+        }
     }
 
     /**
@@ -121,9 +127,8 @@ class ShopController extends BaseController {
         if ( ! empty($noteIdArray) ) {
             $shopId = $this->getRequestParam('shop_id');
             Note::model()->deleteAll('shop_id='.$shopId.' and id in('.implode(',',$noteIdArray).')');
+            $this->showSuccessMessage('删除成功', Yii::app()->createUrl('shop/manageNote', array('id'=>$shopId)));
         }
-
-        $this->showSuccessMessage('删除成功', Yii::app()->createUrl('shop/manageNote', array('id'=>$shopId)));
     }
 //
     /**

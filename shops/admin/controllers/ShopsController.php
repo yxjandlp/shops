@@ -28,7 +28,7 @@ class ShopsController extends BaseController
     }
 
     /**
-     * 添加商家界面显示
+     * 添加商家
      */
     public function actionAdd()
     {
@@ -51,8 +51,9 @@ class ShopsController extends BaseController
 
     /**
      * 判断是否通过审核
+     * @return boolean
      */
-    protected function gridIsAudit( $data, $row ) {
+    protected  function gridIsAudit( $data, $row ) {
         return $data->shop->is_active==1 ? "通过" : "未通过";
     }
 
