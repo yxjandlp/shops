@@ -48,9 +48,7 @@ class ShopController extends BaseController {
      */
     public function actionManageNote( $id )
     {
-        if ( Yii::app()->user->isGuest || Yii::app()->user->getState('role') != 'shop' || Yii::app()->user->getId() != $id ) {
-            $this->redirect(Yii::app()->homeUrl);
-        }
+        $this->checkOwner($id);
         $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 管理留言';
 
         $filter =  $this->getRequestParam('filter');
@@ -87,9 +85,44 @@ class ShopController extends BaseController {
      */
     public function actionEdit( $id )
     {
-        if ( Yii::app()->user->isGuest || Yii::app()->user->getState('role') != 'shop' || Yii::app()->user->getId() != $id ) {
-            $this->redirect(Yii::app()->homeUrl);
+        $this->checkOwner($id);
+        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 编辑店辅';
+
+        $shop = Shops::model()->findByPk($id);
+        $shopToCategory = ShopToCategory::model()->find('shop_id=:id', array(':id'=>$id));
+        $model = new ShopForm('register');
+        $model->attributes = $shop->attributes;
+        $shopInfoArray = $this->getRequestParam('ShopForm');
+        if ( ! empty($shopInfoArray) ){
+            $shop->attributes = $shopInfoArray;
+            if ($shop->validate()) {
+                $shop->save();
+
+                if ( $shopToCategory ) {
+                    $shopToCategory->category_id = $shopInfoArray['category'];
+                    $shopToCategory->save();
+                }
+                $this->showSuccessMessage('修改成功', Yii::app()->createUrl('shop/show',array('id'=>$id)));
+            }
         }
+
+        $categoryModel = ShopCategory::model()->findAll();
+        $categoryList = CHtml::listData($categoryModel,'id', 'name');
+        $this->render('edit', array(
+            'model' => $model,
+            'categoryList' => $categoryList,
+            'category_id' => $shopToCategory->category_id,
+        ));
+    }
+
+    /**
+     * 修改图片
+     */
+    public function actionChangeImage( $id )
+    {
+        $this->checkOwner($id);
+        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 修改图片';
+
     }
 
     /**
@@ -130,7 +163,7 @@ class ShopController extends BaseController {
             $this->showSuccessMessage('删除成功', Yii::app()->createUrl('shop/manageNote', array('id'=>$shopId)));
         }
     }
-//
+
     /**
      * 判断是否已处理
      */
@@ -143,6 +176,17 @@ class ShopController extends BaseController {
      */
     protected function gridNoteContent( $data, $row ) {
         return StringUtils::truncateText($data->message, 30);
+    }
+
+    /**
+     * 商家权限过滤,只有本店辅管理员有权限
+     *
+     * @param int $id
+     */
+    private function checkOwner( $id ) {
+        if ( Yii::app()->user->isGuest || Yii::app()->user->getState('role') != 'shop' || Yii::app()->user->getId() != $id ) {
+            $this->redirect(Yii::app()->homeUrl);
+        }
     }
 
 }

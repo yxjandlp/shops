@@ -20,24 +20,15 @@ a,a:visited{
 	text-decoration:none;
 }
 a:hover{
-	color:#15ADFF;
-}
-#header{
-	height:38px;
-    background: #000000 url("../images/header_bg.gif") repeat-x left top;
-	color:#ffffff;
-	line-height:38px;
-}
-#logo{
-	float:left;
+	color:#183D00;
 }
 #logo a{
-	color:#ffffff;
-    font-size: 22px;
+    font-size: 30px;
     font-weight: bold;
 }
 #accounts{
 	float:right;
+    font-size: 13px;
 }
 #accounts ul{
 	padding:0;
@@ -47,8 +38,9 @@ a:hover{
 	float:left;
 }
 #accounts a{
-	color:#ffffff;
+    font-size: 13px;
 	display:block;
+    margin-left: 5px;
 }
 #accounts a:hover{
 	text-decoration:underline;
@@ -60,8 +52,8 @@ a:hover{
 	width:980px;
 	margin:0 auto;
 }
-#mainmenu{
-	margin:20px 0 20px 0;
+#header_main{
+    margin-top: 10px;
 }
 #mainmenu li{
 	list-style-type:none;
@@ -72,12 +64,7 @@ a:hover{
 	margin:0;
 }
 #mainmenu a{
-	display:block;
-	width:150px;
 	text-decoration:none;
-	height:40px;
-	line-height:40px;
-	font-size:22px;
 }
 .shop{
 	width:312px;
@@ -123,4 +110,54 @@ a:hover{
 }
 .top_menu{
     margin-left: 5px;
+}
+#registration{
+    width: 980px;
+    margin: 0 auto;
+}
+#mainmenu{position:relative;width:100%;margin-bottom: 10px;}
+div.bar{position:relative;height:42px;background:url(../images/mainmenu.bg14_6x42.gif) repeat-x;}
+#mainmenu div.tabbar{width:980px;margin: 0 auto}
+#mainmenu .tabbar div.tabs{position:absolute;top:41px;font-size:14px;font-weight:bold;}/*Download by http://www.jb51.net*/
+#mainmenu .tabbar .tabs a{float:left;width:80px;height:24px;line-height:24px;padding-top:7px;text-align:center;color: #183D00;font-weight:lighter;font-size:14px;background:transparent;}
+#mainmenu .tabbar .tabs a:hover{background:#fff url(../images/nav_hover_80x31.gif) no-repeat;text-decoration:none;margin-left:-1px;padding-left:1px;}
+#mainmenu .tabbar .tabs a.actived{background:#fff url(../images/nav_80x31.gif) no-repeat;font-weight:bold;color:#fff;margin-left:-1px;padding-left:1px;}
+#mainmenu .tabbar .tabs a.actived:hover{background:#fff url(../images/nav_80x31.gif) no-repeat;font-weight:bold;color:#fff;}
+#mainmenu .tabbar .bg{position:relative;left:80px;top:41px;width:560px;height:31px;z-index:-1;}
+#mainmenu .tabbar .bg .nw{float:left;width:80px;height:31px;background:transparent url(../images/navleft2_80x31.gif) no-repeat;}
+#mainmenu .tabbar .bg .cen{float:left;width:80px;height:31px;background:transparent url(../images/navlcenter_80x31.gif) no-repeat;}
+#mainmenu .tabbar .bg .ne{float:left;width:80px;height:31px;background:transparent url(../images/navright_80x31.gif) no-repeat;}
+#mainmenu .tabbar .float_icon{background:transparent url(../images/new01_18x19.gif) no-repeat;font-size:0;height:19px;line-height:0;position:absolute;right:403px;text-indent:-999px;top:-4px;width:18px;}
+#mainmenu{z-index:20;min-width:980px;}
+#mainmenu div.banner{position:relative;height:72px;z-index:10;}
+div.bar{height:3px;}
+.category_shop_list{
+    height: 220px;
+    margin-bottom: 20px;
+}
+.category_shop_list h3{
+    font-size: 15px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #DBFCBE;
+    padding-left: 10px;
+    margin: 0;
+}
+.shop_shelf{
+    padding: 10px 0 0 10px;
+}
+.shop_shelf span{
+    width: 174px;
+    margin-right: 20px;
+    float: left;
+}
+.shop_shelf img{
+    margin: 0;
+    padding: 0;
+}
+.show_shop_title{
+    font-size: 15px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
 }

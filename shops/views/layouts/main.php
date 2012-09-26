@@ -10,10 +10,9 @@
 </head>
 <body>
 <div class="container" id="page">
-	<div id="header">
-		<div id="header_main">
-			<div id="logo"><?php echo CHtml::link(CHtml::encode(Yii::app()->name),array('/'),array('id'=>'loginButton')); ?></div>
-			<div id="accounts">
+    <div id="mainmenu">
+        <div id="header_main">
+            <div id="accounts">
                 <?php $this->widget('zii.widgets.CMenu',array(
                 'items'=>array(
                     array('label'=>'登录', 'url'=>Yii::app()->homeUrl.'login?go_url='.$this->getReturnUrl(),'linkOptions'=>array('id'=>'loginButton'), 'visible'=>Yii::app()->user->isGuest),
@@ -24,23 +23,38 @@
                 ),
                 'itemCssClass'=>'top_menu',
             )); ?>
-			</div>
-		</div>
-	</div>
+            </div><div class="clear"></div>
+            <div id="logo"><?php echo CHtml::link(CHtml::encode(Yii::app()->name),array('/'),array('id'=>'loginButton')); ?></div>
+        </div>
+        <div class="clear"></div>
+        <div class="banner">
+            <div class="tabbar">
+                <div class="tabs">
+                    <?php $this->widget('zii.widgets.CMenu',array(
+                    'items'=>array(
+                        array('label'=>'商家联盟', 'url'=>array('/'), 'linkOptions'=>array('class'=>'actived')),
+                        array('label'=>'杂志专区', 'url'=>array('/')),
+                        array('label'=>'营销大区', 'url'=>array('/')),
+                        array('label'=>'音乐家族', 'url'=>array('/')),
+                        array('label'=>'摄影家族', 'url'=>array('/')),
+                        array('label'=>'创业创新', 'url'=>array('/')),
+                        array('label'=>'关于我们', 'url'=>array('/')),
+                    ),
+                )); ?>
+                </div>
+                <div class="bg">
+                    <div class="nw"></div>
+                    <div class="cen"></div>
+                    <div class="cen"></div>
+                    <div class="cen"></div>
+                    <div class="cen"></div>
+                    <div class="ne"></div>
+                </div>
+            </div>
+        </div>
+        <div class="bar clear"></div>
+    </div>
 	<div id="content">
-		<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'商家联盟', 'url'=>array('/')),
-				array('label'=>'杂志专区', 'url'=>array('/')),
-				array('label'=>'营销大区', 'url'=>array('/')),
-				array('label'=>'音乐家族', 'url'=>array('/')),
-                array('label'=>'摄影家族', 'url'=>array('/')),
-                array('label'=>'创业创新课题', 'url'=>array('/')),
-			),
-		)); ?>
-		<div class='clear'></div>
-		</div>
 		<?php echo $content; ?>
 		<div id="footer">
 			<?php include('_sitemap.php');?>

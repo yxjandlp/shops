@@ -9,16 +9,22 @@
 <div class='shop' style='background-color:#339933'>店辅三</div>
 <div class='clear'></div>
 </div>-->
-<div class='block_title'>商家联盟...</div>
 <?php  foreach( $shopGroups as $shopGroup ): ?>
-    <?php echo $shopGroup['category'];?>
-    <ul>
+    <div class="category_shop_list">
+    <h3><?php echo $shopGroup['category'];?></h3>
+    <div class="shop_shelf">
         <?php if( ! empty($shopGroup['shops']) ):?>
         <?php  foreach($shopGroup['shops'] as $shop): ?>
-        <li><?php echo  CHtml::link( $shop['shop']['title'], Yii::app()->createUrl('shop/show',array('id'=>$shop['shop']['id'])));?></li>
+        <span>
+            <p><?php echo CHtml::image(Yii::app()->baseUrl.'/assets/upload/shops/'.$shop['shop']['image'], 'alt',array('width'=>174, 'height'=>140) );?></p>
+            <p class="show_shop_title"><?php echo  CHtml::link( StringUtils::truncateText($shop['shop']['title'], 15), Yii::app()->createUrl('shop/show',array('id'=>$shop['shop']['id'])));?></p>
+        </span>
         <?php endforeach;?>
         <?php else:?>
-        <li>--暂无--</li>
+        <span>--暂无--</span>
         <?php endif;?>
-    </ul>
+
+    </div>
+    </div>
+    <div class="clear"></div>
 <?php  endforeach; ?>
