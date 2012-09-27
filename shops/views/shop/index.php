@@ -1,13 +1,18 @@
-<?php echo CHtml::image(Yii::app()->request->baseUrl.'/assets/upload/shops/'.$shop['image']);?>
-<p><?php echo $shop['title'];?></p>
+<?php echo CHtml::image(Yii::app()->request->baseUrl.'/assets/upload/shops/'.$shop['image'],$shop['title'],array('width'=>210, 'class'=>'shop_image'));?>
+<div>
+    <h3><?php echo $shop['title'];?></h3
+    <p></p>
+        <?php
+        if (  Yii::app()->user->getState('role') != 'shop') {
+            echo CHtml::link('留言领取优惠券', array('shop/note','id'=>$shop['id']));
+        }
+        ?>
+    </p>
+</div>
 <p>
     <?php echo $shop['description'];?>
 </p>
-<?php
-if (  Yii::app()->user->getState('role') != 'shop') {
-    echo CHtml::link('留言领取优惠券', array('shop/note','id'=>$shop['id']));
-}
-?>
+
 <?php $this->widget('zii.widgets.CMenu',array(
     'items'=>array(
         array('label'=>'编辑', 'url'=>Yii::app()->createUrl('shop/edit',array('id'=>Yii::app()->user->getId())), 'visible'=>(Yii::app()->user->getState('role')=='shop' && Yii::app()->user->getId()==$shop['id'])),
@@ -15,3 +20,4 @@ if (  Yii::app()->user->getState('role') != 'shop') {
     ),
     'itemCssClass'=>'top_menu',
 )); ?>
+<div class="clear"></div>

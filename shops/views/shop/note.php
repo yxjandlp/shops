@@ -1,5 +1,4 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/css/note.css');?>
-<div class='block_title'>留言领取优惠券</div>
 <div class="noteForm">
     <?php $form=$this->beginWidget('CActiveForm',array('method'=>'post'));?>
     <p><?php echo $form->errorSummary($model);?></p>

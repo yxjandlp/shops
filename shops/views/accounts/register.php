@@ -4,7 +4,6 @@
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/common/jquery.ui.touch.js');?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/plugin/QapTcha/QapTcha.jquery.min.js');?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/register.js');?>
-<div class='block_title'>普通会员注册</div>
 <div class="regForm">
     <?php $form=$this->beginWidget('CActiveForm',array(
           'id'=>'registerForm',

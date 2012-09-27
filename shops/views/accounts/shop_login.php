@@ -1,5 +1,4 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/css/login.css');?>
-<div class='block_title'>店辅登录</div>
 <div class="shopLoginForm">
     <?php $form=$this->beginWidget('CActiveForm');?>
     <p><?php echo $form->errorSummary($model);?></p>

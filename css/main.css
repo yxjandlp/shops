@@ -134,13 +134,14 @@ div.bar{height:3px;}
 .category_shop_list{
     height: 220px;
     margin-bottom: 20px;
+    border: 1px solid #EDEDED;
 }
 .category_shop_list h3{
     font-size: 15px;
     height: 30px;
     line-height: 30px;
-    background-color: #DBFCBE;
-    padding-left: 10px;
+    background-color: #EDF2F7;
+    padding:0 10px;
     margin: 0;
 }
 .shop_shelf{
@@ -160,4 +161,18 @@ div.bar{height:3px;}
     text-align: center;
     height: 30px;
     line-height: 30px;
+}
+.more_shop{
+    float: right;
+}
+.more_shop a{
+    color: #7A9999;
+}
+.more_shop a:hover{
+    text-decoration: underline;
+    color: #000000;
+}
+.shop_image{
+    float: left;
+    margin: 0 20px 20px 0;
 }
