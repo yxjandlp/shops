@@ -73,7 +73,8 @@ class AdminAccount extends CActiveRecord
     /*
     * 密码验证
     */
-    public function authenticate($attribute,$params){
+    public function authenticate($attribute,$params)
+    {
         $this->_identity = new AdminIdentity($this->username,$this->password);
 
         if( !$this->_identity->authenticate() ){
@@ -87,7 +88,8 @@ class AdminAccount extends CActiveRecord
      * @param $password string the password to be validated
      * @return boolean whether the password is valid
      */
-    public function validatePassword($password) {
+    public function validatePassword($password)
+    {
         return sha1($password) == $this->password;
     }
 
@@ -95,7 +97,8 @@ class AdminAccount extends CActiveRecord
      * 管理员登录
      * @return boolean whether login is successful
      */
-    public function login() {
+    public function login()
+    {
         if ( $this->_identity === null ) {
             $this->_identity = new AdminIdentity($this->username,$this->password);
             $this->_identity->authenticate();
@@ -114,9 +117,6 @@ class AdminAccount extends CActiveRecord
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
@@ -127,4 +127,16 @@ class AdminAccount extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    /**
+     * 修改密码
+     * @param string $password
+     * @return boolean
+     */
+    public function changePassword( $password )
+    {
+        $this->setAttribute('password', sha1($password));
+        return $this->update(array('password'));
+    }
+
 }

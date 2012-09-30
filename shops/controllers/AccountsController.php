@@ -38,7 +38,7 @@ class AccountsController extends BaseController {
     public function accessRules(){
         return array(
             array('allow',
-                'actions'=>array('logout'),
+                'actions'=>array('logout', 'changePassword'),
                 'users'=>array('@'),
             ),
             array('allow',
@@ -62,7 +62,7 @@ class AccountsController extends BaseController {
 	 * 登录动作
 	 */
 	public function actionLogin() {
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) .' - 登录';
+        $this->setPageTitle('登录');
 
         $model = new UserForm('login');
         $loginInfoArray = $this->getRequestParam('UserForm');
@@ -86,7 +86,7 @@ class AccountsController extends BaseController {
 	 * 注册动作
 	 */
 	public function actionRegister() {
-		$this->pageTitle = CHtml::encode(Yii::app()->params['title']) .' - 注册';
+        $this->setPageTitle('注册');
         $model = new UserForm('register');
 
         $ajaxForm = $this->getRequestParam('ajax');
@@ -115,7 +115,7 @@ class AccountsController extends BaseController {
      * 注册成功页面
      */
     public function actionRegisterSuccess() {
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) .' - 注册成功';
+        $this->setPageTitle('注册成功');
         $this->render('register_success', array());
     }
 
@@ -132,7 +132,7 @@ class AccountsController extends BaseController {
      */
     public function actionShopRegister()
     {
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) .' - 商家加盟';
+        $this->setPageTitle('商家加盟');
 
         $model = new ShopForm('register');
         $shopInfoArray = $this->getRequestParam('ShopForm');
@@ -166,7 +166,7 @@ class AccountsController extends BaseController {
      */
     public function actionShopRegisterSuccess()
     {
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) .' - 加盟成功';
+        $this->setPageTitle('加盟成功');
 
         $this->render('shop_register_success', array(
             'lastInsertId' => str_pad( $this->getRequestParam('insertId'), 5, '0' , STR_PAD_LEFT),
@@ -174,11 +174,11 @@ class AccountsController extends BaseController {
     }
 
     /**
-     * 登录动作
+     * 店辅登录动作
      */
     public function actionShopLogin()
     {
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) .' - 商家登录';
+        $this->setPageTitle('商家登录');
 
         $model = new ShopForm('login');
         $loginInfoArray = $this->getRequestParam('ShopForm');
@@ -193,4 +193,22 @@ class AccountsController extends BaseController {
         ));
     }
 
+    /**
+     * 修改密码
+     */
+    public function actionChangePassword()
+    {
+        $this->setPageTitle('修改密码');
+        $model = new PasswordChangeForm();
+        $passwordInfo = $this->getRequestParam('PasswordChangeForm');
+        if( $passwordInfo ){
+            $model->attributes = $passwordInfo;
+            if($model->validate() && $model->changePassword()){
+                $this->showSuccessMessage('修改密码成功', Yii::app()->homeUrl);
+            }
+        }
+        $this->render('password_change',array(
+            'model' => $model
+        ));
+    }
 }

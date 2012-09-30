@@ -7,7 +7,7 @@ class SiteController extends BaseController {
 	 * 网站首页-商家联盟页
 	 */
 	public function actionIndex() {
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 首页';
+        $this->setPageTitle('首页');
 
         $shopsArray = array();
         $categories = ShopCategory::model()->findAll();

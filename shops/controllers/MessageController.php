@@ -14,7 +14,7 @@ class MessageController extends CController
      */
     public function actionSuccess()
     {
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 成功';
+        $this->setPageTitle('成功');
 
         $message = Yii::app()->request->getParam('message','');
         $returnUrl = Yii::app()->request->getParam('returnUrl', Yii::app()->createUrl('/'));

@@ -139,4 +139,15 @@ class User extends CActiveRecord
         return $user->save();
     }
 
+    /**
+     * 修改密码
+     * @param string $password
+     * @return boolean
+     */
+    public function changePassword( $password )
+    {
+        $this->setAttribute('password', sha1($password));
+        return $this->update(array('password'));
+    }
+
 }

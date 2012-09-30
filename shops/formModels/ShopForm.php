@@ -1,5 +1,6 @@
 <?php
 /**
+ * 店辅注册和登录表单
  * @author yaoxianjin
  *
  * Date: 12-8-26

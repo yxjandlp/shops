@@ -14,6 +14,7 @@ return array(
         'application.common.classes.*',
         'application.common.config.*',
         'application.components.*',
+        'application.formModels.*',
     ),
     'defaultController'=>'site',
     'components'=>array(

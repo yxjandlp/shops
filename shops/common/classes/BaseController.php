@@ -14,7 +14,7 @@ class BaseController extends CController {
 	 * @param $defaultValue 
 	 * @return string
 	 */
-	protected function getRequestParam( $paramName , $defaultValue = null )
+	public function getRequestParam( $paramName , $defaultValue = null )
     {
 		$request = Yii::app()->getRequest();
 		return $request->getParam( $paramName, $defaultValue );
@@ -25,7 +25,7 @@ class BaseController extends CController {
 	 * 
 	 * @return string $goUrl 
 	 */
-	protected function getReturnUrl()
+	public function getReturnUrl()
     {
 		$currentUrl = Yii::app()->request->getUrl();
 		$returnUrl = preg_replace( '/(\w+)(\?go_url=.*)/' , '${1}' , $currentUrl );
@@ -36,9 +36,19 @@ class BaseController extends CController {
     /**
      * 成功提示
      */
-    protected function showSuccessMessage( $message="", $returnUrl="shops/")
+    public  function showSuccessMessage( $message="", $returnUrl="shops/")
     {
         $this->redirect(Yii::app()->homeUrl.'message/success?message='.$message.'&returnUrl='.$returnUrl);
     }
-	
+
+    /**
+     * 设置页面标题
+     *
+     * @param string $title
+     */
+    public function setPageTitle( $title )
+    {
+        parent::setPageTitle( CHtml::encode(Yii::app()->params['title']) . ' - ' .$title);
+    }
+
 }

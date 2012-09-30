@@ -149,4 +149,15 @@ class Shops extends CActiveRecord
     public function validatePassword( $password ) {
         return sha1($password) == $this->admin_pwd;
     }
+
+    /**
+     * 修改密码
+     *
+     * @param string $password
+     */
+    public function changePassword( $password ) {
+        $this->setAttribute('admin_pwd', sha1($password));
+        return $this->update(array('admin_pwd'));
+    }
+
 }

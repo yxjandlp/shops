@@ -49,7 +49,7 @@ class ShopController extends BaseController {
     public function actionManageNote( $id )
     {
         $this->checkOwner($id);
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 管理留言';
+        $this->setPageTitle('管理留言');
 
         $filter =  $this->getRequestParam('filter');
         $noteIdArray =  $this->getRequestParam('select');
@@ -73,7 +73,7 @@ class ShopController extends BaseController {
      */
     public function actionShow( $id )
     {
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 商家';
+        $this->setPageTitle('商家');
         $shop = Shops::model()->findByPk($id);
         $this->render('index', array(
             'shop' => $shop
@@ -86,7 +86,7 @@ class ShopController extends BaseController {
     public function actionEdit( $id )
     {
         $this->checkOwner($id);
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 编辑店辅';
+        $this->setPageTitle('编辑店辅');
 
         $shop = Shops::model()->findByPk($id);
         $shopToCategory = ShopToCategory::model()->find('shop_id=:id', array(':id'=>$id));
@@ -121,8 +121,7 @@ class ShopController extends BaseController {
     public function actionChangeImage( $id )
     {
         $this->checkOwner($id);
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 修改图片';
-
+        $this->setPageTitle('修改图片');
     }
 
     /**
@@ -130,7 +129,7 @@ class ShopController extends BaseController {
      */
     public function actionNote( $id )
     {
-        $this->pageTitle = CHtml::encode(Yii::app()->params['title']) . ' - 留言';
+        $this->setPageTitle('留言');
 
         $model = new Note();
         $noteInfo = $this->getRequestParam('Note');

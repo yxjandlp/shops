@@ -19,6 +19,7 @@
                     array('label'=>'注册', 'url'=>array('register/'), 'linkOptions'=>array('id'=>'registerButton'), 'visible'=>Yii::app()->user->isGuest),
                     array('label'=>Yii::app()->user->name, 'visible'=>!Yii::app()->user->isGuest),
                     array('label'=>'进入我的店辅', 'url'=>Yii::app()->createUrl('shop/show',array('id'=>Yii::app()->user->getId())), 'visible'=>(Yii::app()->user->getState('role')=='shop')),
+                    array('label'=>'修改密码', 'url'=>array('accounts/changePassword'), 'visible'=>!Yii::app()->user->isGuest),
                     array('label'=>'注销', 'url'=>array('logout/'), 'visible'=>!Yii::app()->user->isGuest),
                 ),
                 'itemCssClass'=>'top_menu',
