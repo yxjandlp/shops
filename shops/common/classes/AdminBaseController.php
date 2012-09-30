@@ -31,4 +31,11 @@ class AdminBaseController extends BaseController
         $filterChain->run();
     }
 
+    /**
+     * 成功提示
+     */
+    public  function showSuccessMessage( $message="", $returnUrl="shops/")
+    {
+       $this->redirect(Yii::app()->createUrl('message/success', array('message'=>$message, 'returnUrl'=>$returnUrl)));
+    }
 }
