@@ -37,13 +37,29 @@
         <input type="button" value="增加" onclick="location='<?php echo Yii::app()->createUrl('shops/add') ;?>';" />
         <input type="button" value="修改" />
         <input type="button" value="删除">
-        <input type="button" value="通过审核">
-        <input type="button" value="未通过审核">
+        <input type="button" name="set_active" id="set_active" value="通过审核">
+        <input type="button" name="set_in_active" id="set_in_active" value="未通过审核">
     </div>
     </form>
 </div>
 <script type="text/javascript">
     $('#audit').change(function(){
         $('#shop_list').submit();
+    });
+    $('#set_active').click(function(){
+        if($('.select-on-check:checked').size() < 1){
+            $('#shop_list').jAlert('请选择处理项','fatal');
+        }else{
+            $('#shop_list').attr('action', '<?php echo Yii::app()->createUrl('shops/setActive');?>');
+            $('#shop_list').submit();
+        }
+    });
+    $('#set_in_active').click(function(){
+        if($('.select-on-check:checked').size() < 1){
+            $('#shop_list').jAlert('请选择处理项','fatal');
+        }else{
+            $('#shop_list').attr('action', '<?php echo Yii::app()->createUrl('shops/setInActive');?>');
+            $('#shop_list').submit();
+        }
     });
 </script>

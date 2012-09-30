@@ -12,6 +12,8 @@ class ShopsController extends AdminBaseController
      */
     public function actionIndex()
     {
+        $this->setPageTitle('店辅管理');
+
         $audit = $this->getRequestParam('audit', 'all');
         $criteria = array('with'=>array('category', 'shop'));
         if ( in_array($audit, array('0', '1'), true) ) {
@@ -47,6 +49,28 @@ class ShopsController extends AdminBaseController
         $this->render('add', array(
             'model' => $model
         ));
+    }
+
+    /**
+     * 审核通过
+     */
+    public function actionSetActive() {
+        $shopIdArray =  $this->getRequestParam('select');
+        if ( ! empty($shopIdArray) ) {
+            Shops::model()->updateAll(array('is_active'=>Shops::IS_ACTIVE),'id in('.implode(',',$shopIdArray).')');
+            $this->showSuccessMessage('设置成功', Yii::app()->createUrl('shops/index'));
+        }
+    }
+
+    /**
+     * 审核未通过
+     */
+    public function actionSetInActive() {
+        $shopIdArray =  $this->getRequestParam('select');
+        if ( ! empty($shopIdArray) ) {
+            Shops::model()->updateAll(array('is_active'=>Shops::NOT_ACTIVE),'id in('.implode(',',$shopIdArray).')');
+            $this->showSuccessMessage('设置成功', Yii::app()->createUrl('shops/index'));
+        }
     }
 
     /**

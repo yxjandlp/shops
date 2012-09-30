@@ -38,7 +38,8 @@ class BaseController extends CController {
      */
     public  function showSuccessMessage( $message="", $returnUrl="shops/")
     {
-        $this->redirect(Yii::app()->homeUrl.'message/success?message='.$message.'&returnUrl='.$returnUrl);
+        $this->redirect(Yii::app()->createUrl('message/success') .'?message='.$message.'&returnUrl='.$returnUrl);
+        //$this->redirect(Yii::app()->createUrl('message/success', array('message'=>$message, 'returnUrl'=>$returnUrl)));
     }
 
     /**
@@ -48,7 +49,7 @@ class BaseController extends CController {
      */
     public function setPageTitle( $title )
     {
-        parent::setPageTitle( CHtml::encode(Yii::app()->params['title']) . ' - ' .$title);
+        parent::setPageTitle( CHtml::encode(Yii::app()->name) . ' - ' .$title);
     }
 
 }

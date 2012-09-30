@@ -33,7 +33,7 @@
 </form>
     <script type="text/javascript">
         $('#set_handled').click(function(){
-           if($('input[type=checkbox]:checked').size() < 1){
+           if($('.select-on-check:checked').size() < 1){
                $('#note_list').jAlert('请选择处理项','fatal');
            }else{
                $('#note_list').submit();

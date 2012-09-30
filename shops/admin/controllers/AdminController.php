@@ -8,7 +8,7 @@ class AdminController extends AdminBaseController {
      * the frame of admin
      */
 	public function actionIndex() {
-        $this->pageTitle = Yii::app()->name . ' - admin';
+        $this->setPageTitle('后台');
 		$this->render('index' , array() );
 	}
 

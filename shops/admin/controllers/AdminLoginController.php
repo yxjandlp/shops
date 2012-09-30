@@ -11,7 +11,7 @@ class AdminLoginController extends BaseController
      * 后台登录
      */
     public function actionIndex() {
-        $this->pageTitle = CHtml::encode(Yii::app()->name) .' - 后台登录';
+        $this->setPageTitle('后台登录');
 
         $model = new AdminAccount();
         $loginInfoArray = $this->getRequestParam('AdminAccount');

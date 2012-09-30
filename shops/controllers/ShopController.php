@@ -55,6 +55,7 @@ class ShopController extends BaseController {
         $noteIdArray =  $this->getRequestParam('select');
         if ( ! empty($noteIdArray) ) {
             Note::model()->updateAll(array('is_handled'=>1),'shop_id='.$id.' and id in('.implode(',',$noteIdArray).')');
+            $this->showSuccessMessage('设置成功', Yii::app()->createUrl('shop/manageNote', array('id'=>$id)));
         }
         $model = new Note('search');
         $model->shop_id = $id;
