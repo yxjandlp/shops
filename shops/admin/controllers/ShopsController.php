@@ -34,20 +34,29 @@ class ShopsController extends AdminBaseController
      */
     public function actionAdd()
     {
-        $model = new Shops();
-        $shopInfoArray = $this->getRequestParam('Shops');
-        if ( $shopInfoArray ) {
+        $model = new ShopForm('register');
+        $shopInfoArray = $this->getRequestParam('ShopForm');
+        if ( ! empty($shopInfoArray) ){
             $model->attributes = $shopInfoArray;
             $shopImage = CUploadedFile::getInstance($model,'image');
-            $joinTime = time();
-            $model->join_time = $joinTime;
-            $model->image = $joinTime.'.'.$shopImage->extensionName;
-            if ( $model->save() &&  $shopImage->saveAs('assets/upload/'.$model->image) ) {
-                $this->redirect('index');
+            $model->image = $shopImage;
+            if ($model->validate()) {
+                $joinTime = time();
+                $model->join_time = $joinTime;
+                $model->image = $joinTime.'.'.$shopImage->extensionName;
+                $model->admin_pwd = sha1($shopInfoArray['admin_pwd']);
+                if ( $shopImage->saveAs('assets/upload/shops/'.$model->image) && ( $insertId = $model->addShop()) ) {
+                    if ( $model->addShopToCategory($insertId) )
+                        $this->showSuccessMessage('添加成功', Yii::app()->createUrl('shops/index'));
+                }
             }
         }
+
+        $categoryModel = ShopCategory::model()->findAll();
+        $categoryList = CHtml::listData($categoryModel,'id', 'name');
         $this->render('add', array(
-            'model' => $model
+            'model' => $model,
+            'categoryList' => $categoryList
         ));
     }
 

@@ -37,5 +37,6 @@ return array(
                 'frontend.components.*',
                 'frontend.formModels.*',
 		),
+    'params'=>require(dirname(__FILE__).'/params.php'),
 		
 );
