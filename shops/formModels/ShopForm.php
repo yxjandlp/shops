@@ -24,9 +24,7 @@ class ShopForm extends CFormModel
      */
     public function rules()
     {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
-        return array(
+         return array(
             array('title, category, description, image, confirm_pwd', 'required', 'on'=>'register'),
             array('admin_pwd','required', 'on'=>'login, register'),
             array('id', 'required', 'on'=>'login'),
@@ -63,13 +61,12 @@ class ShopForm extends CFormModel
         return Shops::model()->addShop($this->attributes);
     }
 
-    /*
-    * 密码验证
-    */
+    /**
+     * 密码验证
+     */
     public function authenticate($attribute,$params)
     {
         $this->_identity = new ShopIdentity($this->id,$this->admin_pwd);
-
         if( !$this->_identity->authenticate() ){
             $this->addError('id',"店铺编号或管理密码错误");
         }

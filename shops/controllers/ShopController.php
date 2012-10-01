@@ -30,7 +30,7 @@ class ShopController extends BaseController {
     public function accessRules(){
         return array(
             array('allow',
-                'actions'=>array('note', 'edit','manageNote','deleteNote'),
+                'actions'=>array('note', 'edit','manageNote','deleteNote', 'changeImage'),
                 'users'=>array('@'),
             ),
             array('allow',
@@ -123,6 +123,24 @@ class ShopController extends BaseController {
     {
         $this->checkOwner($id);
         $this->setPageTitle('修改图片');
+
+        $shop = Shops::model()->findByPk($id);
+        $model = new ImageChangeForm();
+        $shopInfoArray = $this->getRequestParam('ImageChangeForm');
+        if ( ! empty($shopInfoArray) ){
+            $model->attributes = $shopInfoArray;
+            $shopImage = CUploadedFile::getInstance($model, 'image');
+            $model->image = $shopImage;
+            if ( $model->validate() ) {
+                if (  $shopImage->saveAs('assets/upload/shops/'.$shop->image) ) {
+
+                }
+            }
+        }
+        $this->render('change_image', array(
+            'shop' => $shop,
+            'model' => $model
+        ));
     }
 
     /**

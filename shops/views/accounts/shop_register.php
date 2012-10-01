@@ -6,7 +6,6 @@
     'id'=>'addShopForm',
     'htmlOptions'=>array('enctype'=>'multipart/form-data'),
     'enableAjaxValidation' => false,
-    'htmlOptions' => array('enctype' => 'multipart/form-data'),
 ));
     ?>
     <table border="0">
