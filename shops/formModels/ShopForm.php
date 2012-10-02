@@ -62,6 +62,13 @@ class ShopForm extends CFormModel
     }
 
     /**
+     * 添加商家（管理员操作)
+     */
+    public function addShopByAdmin(){
+        return Shops::model()->addShop($this->attributes, true);
+    }
+
+    /**
      * 密码验证
      */
     public function authenticate($attribute,$params)

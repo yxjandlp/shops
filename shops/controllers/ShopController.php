@@ -5,7 +5,7 @@
  * Date: 12-8-30
  * Time: 下午8:37
  */
-class ShopController extends BaseController {
+class ShopController extends ShopBaseController {
 
     /**
      * 默认布局文件
@@ -30,7 +30,7 @@ class ShopController extends BaseController {
     public function accessRules(){
         return array(
             array('allow',
-                'actions'=>array('note', 'edit','manageNote','deleteNote', 'changeImage'),
+                'actions'=>array('note', 'edit','manageNote','deleteNote', 'changeImage', 'noteDetail'),
                 'users'=>array('@'),
             ),
             array('allow',
@@ -41,32 +41,6 @@ class ShopController extends BaseController {
                 'users'=>array('*')
             )
         );
-    }
-
-    /**
-     * 管理留言
-     */
-    public function actionManageNote( $id )
-    {
-        $this->checkOwner($id);
-        $this->setPageTitle('管理留言');
-
-        $filter =  $this->getRequestParam('filter');
-        $noteIdArray =  $this->getRequestParam('select');
-        if ( ! empty($noteIdArray) ) {
-            Note::model()->updateAll(array('is_handled'=>1),'shop_id='.$id.' and id in('.implode(',',$noteIdArray).')');
-            $this->showSuccessMessage('设置成功', Yii::app()->createUrl('shop/manageNote', array('id'=>$id)));
-        }
-        $model = new Note('search');
-        $model->shop_id = $id;
-        if ( in_array($filter, array('0','1'), true) ) {
-            $model->is_handled = $filter;
-        }
-        $this->render('manager_note', array(
-            'model' => $model,
-            'shop_id' => $id,
-            'filter' => $filter
-        ));
     }
 
     /**
@@ -141,70 +115,6 @@ class ShopController extends BaseController {
             'shop' => $shop,
             'model' => $model
         ));
-    }
-
-    /**
-     * 用户留言
-     */
-    public function actionNote( $id )
-    {
-        $this->setPageTitle('留言');
-
-        $model = new Note();
-        $noteInfo = $this->getRequestParam('Note');
-        if ( $noteInfo ) {
-            $model->attributes = $noteInfo;
-            if ( $model->validate() ) {
-                $model->user_id = Yii::app()->user->getId();
-                $model->username = Yii::app()->user->name;
-                $model->shop_id = $id;
-                $model->message = $noteInfo['message'];
-                $model->is_handled = 0;
-                if ( $model->save() ) {
-                    $this->showSuccessMessage('留言成功', Yii::app()->createUrl('shop/show',array('id'=>$id)));
-                }
-            }
-        }
-        $this->render('note', array(
-            'model' => $model
-        ));
-    }
-
-    /**
-     * 删除留言
-     */
-    public function actionDeleteNote() {
-        $noteIdArray = $this->getRequestParam('select');
-        if ( ! empty($noteIdArray) ) {
-            $shopId = $this->getRequestParam('shop_id');
-            Note::model()->deleteAll('shop_id='.$shopId.' and id in('.implode(',',$noteIdArray).')');
-            $this->showSuccessMessage('删除成功', Yii::app()->createUrl('shop/manageNote', array('id'=>$shopId)));
-        }
-    }
-
-    /**
-     * 判断是否已处理
-     */
-    protected function gridIsHandled( $data, $row ) {
-        return $data->is_handled==1 ? "已处理" : "未处理";
-    }
-
-    /**
-     * 留言内容摘要显示
-     */
-    protected function gridNoteContent( $data, $row ) {
-        return StringUtils::truncateText($data->message, 30);
-    }
-
-    /**
-     * 商家权限过滤,只有本店辅管理员有权限
-     *
-     * @param int $id
-     */
-    private function checkOwner( $id ) {
-        if ( Yii::app()->user->isGuest || Yii::app()->user->getState('role') != 'shop' || Yii::app()->user->getId() != $id ) {
-            $this->redirect(Yii::app()->homeUrl);
-        }
     }
 
 }

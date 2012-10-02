@@ -17,6 +17,12 @@
                 'value'=>array($this,'gridNoteContent'),
             ),
             array(
+                'header'=> '操作',
+                'class'=>'CLinkColumn',
+                'label'=>'详细内容',
+                'urlExpression'=>'Yii::app()->createUrl("note/detail",array("id"=>$data->id))'
+            ),
+            array(
                 'name'=>'create_time',
                 'value'=>'date("Y/m/d H:i:s", $data->create_time)',
             ),
@@ -31,25 +37,25 @@
     <input type="button" name="set_handled" value="设为已处理" id="set_handled" />&nbsp;&nbsp;
     <input type="button" name="delete_note" value="删除" id="delete_note" />
 </form>
-    <script type="text/javascript">
-        $('#set_handled').click(function(){
-           if($('.select-on-check:checked').size() < 1){
-               $('#note_list').jAlert('请选择处理项','fatal');
-           }else{
-               $('#note_list').submit();
-           }
-        });
-        $('#delete_note').click(function(){
-            if($('input[type=checkbox]:checked').size() < 1){
-                $('#note_list').jAlert('请选择删除项','fatal');
-            }else{
-                if(confirm('确定删除吗')){
-                    $('#note_list').attr('action', '<?php echo Yii::app()->createUrl('shop/deleteNote');?>');
-                    $('#note_list').submit();
-                }
-            }
-        });
-        $('#filter').change(function(){
+<script type="text/javascript">
+    $('#set_handled').click(function(){
+        if($('.select-on-check:checked').size() < 1){
+            $('#note_list').jAlert('请选择处理项','fatal');
+        }else{
             $('#note_list').submit();
-        });
-    </script>
+        }
+    });
+    $('#delete_note').click(function(){
+        if($('input[type=checkbox]:checked').size() < 1){
+            $('#note_list').jAlert('请选择删除项','fatal');
+        }else{
+            if(confirm('确定删除吗')){
+                $('#note_list').attr('action', '<?php echo Yii::app()->createUrl('note/delete');?>');
+                $('#note_list').submit();
+            }
+        }
+    });
+    $('#filter').change(function(){
+        $('#note_list').submit();
+    });
+</script>

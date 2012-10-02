@@ -127,16 +127,21 @@ class Shops extends CActiveRecord
      * 添加商家
      *
      * @param array $attributes
+     * @param boolean $isAdmin
      * @return int id
      */
-    public function addShop($attributes) {
+    public function addShop($attributes, $isAdmin=false) {
         $shop = new Shops();
         $shop->setAttribute('title',$attributes['title'] );
         $shop->setAttribute('description', $attributes['description']);
         $shop->setAttribute('image', $attributes['image']);
         $shop->setAttribute('admin_pwd', $attributes['admin_pwd']);
         $shop->setAttribute('join_time', $attributes['join_time']);
-        $shop->setAttribute('is_active', self::NOT_ACTIVE);
+        if( $isAdmin ){
+            $shop->setAttribute('is_active', self::IS_ACTIVE);
+        }else{
+            $shop->setAttribute('is_active', self::NOT_ACTIVE);
+        }
         $shop->save();
         return $shop->id;
     }
