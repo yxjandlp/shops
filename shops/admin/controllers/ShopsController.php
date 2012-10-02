@@ -205,6 +205,16 @@ class ShopsController extends AdminBaseController
     }
 
     /**
+     * 查看详细内容
+     */
+    public function actionDetail( $id )
+    {
+        $shop = Shops::model()->findByPk($id);
+        $this->render('detail', array(
+            'shop' => $shop
+        ));
+    }
+    /**
      * 判断是否通过审核
      * @return boolean
      */

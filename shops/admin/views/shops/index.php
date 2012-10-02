@@ -23,6 +23,12 @@
             ),
             'shop.title',
             array(
+                'header'=> '查看',
+                'class'=>'CLinkColumn',
+                'label'=>'详细',
+                'urlExpression'=>'Yii::app()->createUrl("shops/detail",array("id"=>$data->id))'
+            ),
+            array(
                 'name'=>'shop.join_time',
                 'value'=>'date("Y/m/d H:i:s", $data->shop->join_time)',
             ),
