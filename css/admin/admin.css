@@ -71,4 +71,8 @@ li{
 #change_image_form{
     margin-top: 10px;
 }
+.strong_num{
+    font-weight: bold;
+    color: red;
+}
 

@@ -190,7 +190,7 @@ class ShopsController extends AdminBaseController
             $id = $shopIdArray[0];
         }
         $this->setPageTitle('修改密码');
-        $model = new PasswordChangeForm();
+        $model = new PasswordChangeForm('admin');
         $passwordInfo = $this->getRequestParam('PasswordChangeForm');
         if( $passwordInfo ){
             $model->attributes = $passwordInfo;

@@ -33,5 +33,11 @@ class AdminController extends AdminBaseController {
      */
 	public function actionHome() {
         $this->pageTitle = Yii::app()->name . ' - admin';
+        $shopsAmount = Shops::model()->count();
+        $shopToAudit = Shops::model()->count('is_active=:not_active', array(':not_active'=>Shops::NOT_ACTIVE));
+        $this->render('home' , array(
+            'shops_amount' => $shopsAmount,
+            'shop_to_audit' => $shopToAudit
+        ));
     }
 }
