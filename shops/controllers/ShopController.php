@@ -5,7 +5,7 @@
  * Date: 12-8-30
  * Time: 下午8:37
  */
-class ShopController extends ShopBaseController {
+class ShopController extends BaseController {
 
     /**
      * 默认布局文件
@@ -20,7 +20,21 @@ class ShopController extends ShopBaseController {
     public function filters(){
         return array(
             'accessControl' ,
+            'checkRole',
         );
+    }
+
+    /**
+     * 如果角色不是店辅管理员，则给出的action将直接跳转到首页
+     *
+     * @param $filterChain
+     */
+    public function filterCheckRole($filterChain) {
+        $filterArray = array('edit', 'changeImage', 'delete');
+        if ( Yii::app()->user->getState('role') != 'shop' && in_array($this->action->id, $filterArray) ) {
+            $this->redirect(Yii::app()->homeUrl);
+        }
+        $filterChain->run();
     }
 
     /**
@@ -58,11 +72,11 @@ class ShopController extends ShopBaseController {
     /**
      * 编辑店辅
      */
-    public function actionEdit( $id )
+    public function actionEdit(  )
     {
-        $this->checkOwner($id);
         $this->setPageTitle('编辑店辅');
 
+        $id = Yii::app()->user->getId();
         $shop = Shops::model()->findByPk($id);
         $shopToCategory = ShopToCategory::model()->find('shop_id=:id', array(':id'=>$id));
         $model = new ShopForm('register');
@@ -93,11 +107,11 @@ class ShopController extends ShopBaseController {
     /**
      * 修改图片
      */
-    public function actionChangeImage( $id )
+    public function actionChangeImage()
     {
-        $this->checkOwner($id);
         $this->setPageTitle('修改图片');
 
+        $id = Yii::app()->user->getId();
         $shop = Shops::model()->findByPk($id);
         $model = new ImageChangeForm();
         $shopInfoArray = $this->getRequestParam('ImageChangeForm');
@@ -107,7 +121,7 @@ class ShopController extends ShopBaseController {
             $model->image = $shopImage;
             if ( $model->validate() ) {
                 if (  $shopImage->saveAs('assets/upload/shops/'.$shop->image) ) {
-
+                    $this->showSuccessMessage('修改成功', Yii::app()->createUrl('shop/changeImage'));
                 }
             }
         }

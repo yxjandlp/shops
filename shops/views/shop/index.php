@@ -15,8 +15,8 @@
 
 <?php $this->widget('zii.widgets.CMenu',array(
     'items'=>array(
-        array('label'=>'编辑内容', 'url'=>Yii::app()->createUrl('shop/edit',array('id'=>Yii::app()->user->getId())), 'visible'=>(Yii::app()->user->getState('role')=='shop' && Yii::app()->user->getId()==$shop['id'])),
-        array('label'=>'更换图片', 'url'=>Yii::app()->createUrl('shop/changeImage',array('id'=>Yii::app()->user->getId())), 'visible'=>(Yii::app()->user->getState('role')=='shop' && Yii::app()->user->getId()==$shop['id'])),
+        array('label'=>'编辑内容', 'url'=>Yii::app()->createUrl('shop/edit'), 'visible'=>(Yii::app()->user->getState('role')=='shop' && Yii::app()->user->getId()==$shop['id'])),
+        array('label'=>'更换图片', 'url'=>Yii::app()->createUrl('shop/changeImage'), 'visible'=>(Yii::app()->user->getState('role')=='shop' && Yii::app()->user->getId()==$shop['id'])),
         array('label'=>'管理留言', 'url'=>Yii::app()->createUrl('note/'), 'visible'=>(Yii::app()->user->getState('role')=='shop' && Yii::app()->user->getId()==$shop['id'])),
     ),
     'itemCssClass'=>'top_menu',

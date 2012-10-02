@@ -6,7 +6,7 @@
  * Date: 12-10-2
  * Time: 上午10:41
  */
-class NoteController extends ShopBaseController {
+class NoteController extends BaseController {
 
     /**
      * 默认布局文件
@@ -152,6 +152,18 @@ class NoteController extends ShopBaseController {
     protected function gridNoteContent( $data, $row )
     {
         return StringUtils::truncateText($data->message, 30);
+    }
+
+    /**
+     * 商家权限过滤,只有本店辅管理员有权限
+     *
+     * @param int $id
+     */
+    protected  function checkOwner( $id )
+    {
+        if ( Yii::app()->user->isGuest || Yii::app()->user->getState('role') != 'shop' || Yii::app()->user->getId() != $id ) {
+            $this->redirect(Yii::app()->homeUrl);
+        }
     }
 
 }
