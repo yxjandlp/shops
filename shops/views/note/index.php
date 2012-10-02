@@ -46,7 +46,7 @@
         }
     });
     $('#delete_note').click(function(){
-        if($('input[type=checkbox]:checked').size() < 1){
+        if($('.select-on-check::checked').size() < 1){
             $('#note_list').jAlert('请选择删除项','fatal');
         }else{
             if(confirm('确定删除吗')){

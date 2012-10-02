@@ -198,7 +198,7 @@ class AccountsController extends BaseController {
     public function actionChangePassword()
     {
         $this->setPageTitle('修改密码');
-        $model = new PasswordChangeForm();
+        $model = new PasswordChangeForm('normal');
         $passwordInfo = $this->getRequestParam('PasswordChangeForm');
         if( $passwordInfo ){
             $model->attributes = $passwordInfo;

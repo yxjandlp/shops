@@ -35,14 +35,26 @@
     ?>
     <div class="operation">
         <input type="button" value="增加" onclick="location='<?php echo Yii::app()->createUrl('shops/add') ;?>';" />
-        <input type="button" value="修改" />
-        <input type="button" value="删除">
+        <input type="button" name="edit" id="edit" value="修改" />
+        <input type="button" name="delete" id="delete" value="删除">
+        <input type="button" name="change_image" id="change_image" value="更换图片">
+        <input type="button" name="change_pwd" id="change_pwd" value="修改密码">
         <input type="button" name="set_active" id="set_active" value="通过审核">
         <input type="button" name="set_in_active" id="set_in_active" value="未通过审核">
     </div>
     </form>
 </div>
 <script type="text/javascript">
+    function editCheck(action){
+        if($('.select-on-check:checked').size() < 1){
+            $('#shop_list').jAlert('请选择修改项','fatal');
+        }else if($('.select-on-check:checked').size() > 1){
+            $('#shop_list').jAlert('不能同时修改多项','fatal');
+        }else{
+            $('#shop_list').attr('action', action);
+            $('#shop_list').submit();
+        }
+    }
     $('#audit').change(function(){
         $('#shop_list').submit();
     });
@@ -61,5 +73,27 @@
             $('#shop_list').attr('action', '<?php echo Yii::app()->createUrl('shops/setInActive');?>');
             $('#shop_list').submit();
         }
+    });
+    $('#delete').click(function(){
+        if($('.select-on-check:checked').size() < 1){
+            $('#shop_list').jAlert('请选择删除项','fatal');
+        }else{
+            if(confirm('确定删除吗')){
+                $('#shop_list').attr('action', '<?php echo Yii::app()->createUrl('shops/delete');?>');
+                $('#shop_list').submit();
+            }
+        }
+    });
+    $('#edit').click(function(){
+        var action = '<?php echo Yii::app()->createUrl('shops/toEdit');?>';
+        editCheck(action);
+    });
+    $('#change_image').click(function(){
+        var action = '<?php echo Yii::app()->createUrl('shops/changeImage');?>';
+        editCheck(action);
+    });
+    $('#change_pwd').click(function(){
+        var action = '<?php echo Yii::app()->createUrl('shops/changePassword');?>';
+        editCheck(action);
     });
 </script>

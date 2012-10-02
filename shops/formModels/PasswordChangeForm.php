@@ -19,10 +19,11 @@ class PasswordChangeForm extends CFormModel
     public function rules()
     {
         return array(
-            array('oldPassword, newPassword, confirmNewPassword', 'required'),
-            array('oldPassword','checkOldPassword'),
-            array('newPassword', 'length', 'min'=>6),
-            array('confirmNewPassword', 'compare', 'compareAttribute'=>'newPassword', 'message'=>'两次输入的密码不一致', 'on'=>'register'),
+            array('oldPassword', 'required', 'on'=>'normal'),
+            array('newPassword, confirmNewPassword', 'required', 'on'=>'normal, admin'),
+            array('oldPassword','checkOldPassword', 'on'=>'normal, admin'),
+            array('newPassword', 'length', 'min'=>6, 'on'=>'normal, admin'),
+            array('confirmNewPassword', 'compare', 'compareAttribute'=>'newPassword', 'message'=>'两次输入的密码不一致', 'on'=>'normal, admin'),
         );
     }
 
@@ -74,8 +75,17 @@ class PasswordChangeForm extends CFormModel
             $model = AdminAccount::model()->findByPk(Yii::app()->user->getId());
         }
         if( $model ){
-           return $model->changePassword($this->newPassword);
+            return $model->changePassword($this->newPassword);
         }
+    }
+
+    /**
+     * 修改密码（后台管理）
+     */
+    public function changePasswordByAdmin( $shopId)
+    {
+        $model = Shops::model()->findByPk($shopId);
+        return $model->changePassword($this->newPassword);
     }
 
 }
