@@ -32,7 +32,7 @@ class ShopController extends BaseController {
     public function filterCheckRole($filterChain) {
         $filterArray = array('edit', 'changeImage', 'delete');
         if ( Yii::app()->user->getState('role') != 'shop' && in_array($this->action->id, $filterArray) ) {
-            $this->redirect(Yii::app()->homeUrl);
+            throw new CHttpException(403);
         }
         $filterChain->run();
     }
@@ -58,13 +58,42 @@ class ShopController extends BaseController {
     }
 
     /**
+     * 店辅列表页
+     */
+    public function actionIndex()
+    {
+        $this->setPageTitle('首页');
+
+        $shopsArray = array();
+        $categories = ShopCategory::model()->findAll();
+        foreach ( $categories as $category ) {
+            $criteria = new CDbCriteria();
+            $criteria->with = array('category', 'shop');
+            $criteria->compare('category_id', $category['id']);
+            $criteria->compare('is_active', Shops::IS_ACTIVE);
+            $criteria->limit = 5;
+            $models = ShopToCategory::model()->findAll($criteria);
+            $shopsArray[] = array(
+                'category' => $category['name'],
+                'shops' => $models
+            );
+        }
+        $this->render( 'index' , array(
+            'shopGroups' => $shopsArray
+        ) );
+    }
+
+    /**
      * 店辅主页
      */
     public function actionShow( $id )
     {
         $this->setPageTitle('商家');
         $shop = Shops::model()->findByPk($id);
-        $this->render('index', array(
+        if( ! $shop ){
+            throw new CHttpException(404);
+        }
+        $this->render('show', array(
             'shop' => $shop
         ));
     }
@@ -72,7 +101,7 @@ class ShopController extends BaseController {
     /**
      * 编辑店辅
      */
-    public function actionEdit(  )
+    public function actionEdit()
     {
         $this->setPageTitle('编辑店辅');
 

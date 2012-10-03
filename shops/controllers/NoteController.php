@@ -121,6 +121,8 @@ class NoteController extends BaseController {
             $this->render('detail', array(
                 'note' => $note
             ));
+        }else{
+            throw new CHttpException(404);
         }
     }
 
@@ -162,7 +164,7 @@ class NoteController extends BaseController {
     protected  function checkOwner( $id )
     {
         if ( Yii::app()->user->isGuest || Yii::app()->user->getState('role') != 'shop' || Yii::app()->user->getId() != $id ) {
-            $this->redirect(Yii::app()->homeUrl);
+            throw new CHttpException(403);
         }
     }
 

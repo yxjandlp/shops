@@ -16,7 +16,7 @@ return array(
         'application.components.*',
         'application.formModels.*',
     ),
-    'defaultController'=>'site',
+    'defaultController'=>'shop',
     'components'=>array(
         'user'=>array(
             'allowAutoLogin' => true,

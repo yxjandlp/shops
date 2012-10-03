@@ -2,6 +2,8 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="Description" content="大学窝是一个面向大学生的商家信息展示平台，包括商家联盟、杂志专区、营销大区、音乐家族、摄影家族、创业创新几大版块" />
+    <meta name="Keywords" content="daxuewo，大学窝，大学生，商家，杂志，音乐，摄影，创业，创新" />
     <?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/css/main.css');?>
     <?php Yii::app()->clientScript->registerCoreScript('jquery');?>
     <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/jalert/jquery.jalert.packed.js');?>
