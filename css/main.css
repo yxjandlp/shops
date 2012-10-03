@@ -162,15 +162,15 @@ a:hover{
 .category_shop_list{
     height: 220px;
     margin-bottom: 20px;
-    border: 1px solid #EDEDED;
+    border: 1px solid #D3D3D3;
 }
 .category_shop_list h3{
     font-size: 15px;
     height: 30px;
     line-height: 30px;
-    background-color: #EDF2F7;
     padding:0 10px;
     margin: 0;
+    background: url("../images/title_bg.gif") #EDF2F7 repeat-x 0 0;
 }
 .shop_shelf{
     padding: 10px 0 0 10px;
