@@ -18,7 +18,7 @@
                 <?php $this->widget('zii.widgets.CMenu',array(
                 'items'=>array(
                     array('label'=>'登录', 'url'=>Yii::app()->homeUrl.'login?go_url='.$this->getReturnUrl(),'linkOptions'=>array('id'=>'loginButton'), 'visible'=>Yii::app()->user->isGuest),
-                    array('label'=>'注册', 'url'=>array('register/'), 'linkOptions'=>array('id'=>'registerButton'), 'visible'=>Yii::app()->user->isGuest),
+                    array('label'=>'极速注册', 'url'=>array('register/'), 'linkOptions'=>array('id'=>'registerButton'), 'visible'=>Yii::app()->user->isGuest),
                     array('label'=>Yii::app()->user->name, 'visible'=>!Yii::app()->user->isGuest),
                     array('label'=>'进入我的店辅', 'url'=>Yii::app()->createUrl('shop/show',array('id'=>Yii::app()->user->getId())), 'visible'=>(Yii::app()->user->getState('role')=='shop')),
                     array('label'=>'修改密码', 'url'=>array('accounts/changePassword'), 'visible'=>!Yii::app()->user->isGuest),

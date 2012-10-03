@@ -1,6 +1,6 @@
 <?php
-class AccountsController extends BaseController {
-
+class AccountsController extends BaseController
+{
     /**
      * 默认布局文件
      * @var string
@@ -11,7 +11,8 @@ class AccountsController extends BaseController {
      * 过滤器
      * @return array
      */
-    public function filters(){
+    public function filters()
+    {
         return array(
             'accessControl' ,
             'checkLogin',
@@ -23,7 +24,8 @@ class AccountsController extends BaseController {
      *
      * @param $filterChain
      */
-    public function filterCheckLogin($filterChain) {
+    public function filterCheckLogin($filterChain)
+    {
         $filterArray = array('login', 'register', 'registerSuccess', 'shopRegisterSuccess', 'shopLogin');
         if ( ! Yii::app()->user->isGuest && in_array($this->action->id, $filterArray) ) {
             $this->redirect(Yii::app()->homeUrl);
@@ -35,7 +37,8 @@ class AccountsController extends BaseController {
      * 访问控制
      * @return array
      */
-    public function accessRules(){
+    public function accessRules()
+    {
         return array(
             array('allow',
                 'actions'=>array('logout', 'changePassword'),
@@ -54,14 +57,16 @@ class AccountsController extends BaseController {
 	/**
 	 * the defalut page of accounts
 	 */
-	public function actionIndex() {
+	public function actionIndex()
+    {
 		$this->redirect('login');
 	}
 	
 	/**
 	 * 登录动作
 	 */
-	public function actionLogin() {
+	public function actionLogin()
+    {
         $this->setPageTitle('登录');
 
         $model = new UserForm('login');
@@ -85,10 +90,11 @@ class AccountsController extends BaseController {
 	/**
 	 * 注册动作
 	 */
-	public function actionRegister() {
+	public function actionRegister()
+    {
         $this->setPageTitle('注册');
-        $model = new UserForm('register');
 
+        $model = new UserForm('register');
         $ajaxForm = $this->getRequestParam('ajax');
         if ($ajaxForm == "userForm") {
             echo CActiveForm::validate($model);
@@ -100,29 +106,22 @@ class AccountsController extends BaseController {
             if ( $model->validate() ) {
                 $registerInfoArray['password'] = sha1($registerInfoArray['password']);
                 if ($model->register($registerInfoArray['username'], $registerInfoArray['password'])) {
-                    $model->login();
-                    $this->redirect('registerSuccess');
+                    if( $model->login() ){
+                        $this->showSuccessMessage('注册成功', Yii::app()->homeUrl);
+                    }
                 }
             }
         }
-
         $this->render('register', array(
             'model' => $model,
         ));
 	}
 
-    /**
-     * 注册成功页面
-     */
-    public function actionRegisterSuccess() {
-        $this->setPageTitle('注册成功');
-        $this->render('register_success', array());
-    }
-
     /*
     * 注销登录
     */
-    public function actionLogout(){
+    public function actionLogout()
+    {
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
     }
@@ -210,4 +209,5 @@ class AccountsController extends BaseController {
             'model' => $model
         ));
     }
+
 }

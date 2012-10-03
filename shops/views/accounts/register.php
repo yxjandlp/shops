@@ -26,12 +26,6 @@
         <?php echo $form->error($model,'password',array('class'=>'register_error_msg'));?>
         <span class="hint">密码为6个字符以上</span>
     </p>
-    <p><?php echo $form->label($model,'确认密码:');?></p>
-    <p>
-        <?php echo $form->passwordField($model,'password2',array('class'=>'txt_input'));?>
-        <?php echo $form->error($model,'password2',array('class'=>'register_error_msg'));?>
-        <span class="hint">重复密码</span>
-    </p>
     <p><div class="QapTcha"></div></p>
     <div class="clear"></div>
     <p><?php echo CHtml::submitButton('注册',array('class'=>'blue_btn'));?></p>

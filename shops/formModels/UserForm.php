@@ -21,11 +21,9 @@ class UserForm extends CFormModel {
         return array(
             array('username', 'required', 'on'=>'login,register', 'message'=>'用户名不能为空'),
             array('password', 'required', 'on'=>'login,register', 'message'=>'密码不能为空'),
-            array('password2', 'required', 'on'=>'register', 'message'=>'请确认密码'),
             array('username','match','pattern'=>'/^[\w]{6,20}$/','on'=>'register','message'=>'用户名格式错误'),
             array('username', 'validateUsername', 'on'=>'register'),
             array('password', 'length', 'min'=>6, 'on'=>'register', 'message'=>'密码长度不能小于6位'),
-            array('password2', 'compare', 'compareAttribute'=>'password', 'on'=>'register', 'message'=>'两次输入的密码不一致'),
             array('rememberMe', 'boolean', 'on'=>'login'),
             array('password','authenticate', 'on'=>'login'),
         );
@@ -38,7 +36,6 @@ class UserForm extends CFormModel {
         return array(
             'username' => '用户名',
             'password' => "密码",
-            "password2" => "确认密码",
         );
     }
 
