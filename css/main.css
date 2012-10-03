@@ -53,9 +53,10 @@ a:hover{
 	margin-right:10px;
 }
 #top{
-    background: url('../images/top.jpg') white repeat-x 0 0;
-    height: 26px;
-    line-height: 26px;
+    background: url('../images/top_bg.png') white repeat-x 0 0;
+    border-bottom: 1px solid #E4E6E2;
+    height: 35px;
+    line-height: 35px;
 }
 #top a{
     color: black;
