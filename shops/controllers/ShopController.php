@@ -93,9 +93,13 @@ class ShopController extends BaseController {
         if( ! $shop ){
             throw new CHttpException(404);
         }
-        $this->render('show', array(
-            'shop' => $shop
-        ));
+        if( $shop->is_active == Shops::NOT_ACTIVE ){
+            $this->render('shop_to_audit', array());
+        }else{
+            $this->render('show', array(
+                'shop' => $shop
+            ));
+        }
     }
 
     /**

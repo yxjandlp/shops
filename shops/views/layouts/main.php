@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container" id="page">
-    <div id="mainmenu">
+    <div id="top">
         <div id="header_main">
             <div id="accounts">
                 <?php $this->widget('zii.widgets.CMenu',array(
@@ -26,36 +26,29 @@
                 ),
                 'itemCssClass'=>'top_menu',
             )); ?>
-            </div><div class="clear"></div>
-            <div id="logo"><?php echo CHtml::link(CHtml::encode(Yii::app()->name),array('/'),array('id'=>'loginButton')); ?></div>
-        </div>
-        <div class="clear"></div>
-        <div class="banner">
-            <div class="tabbar">
-                <div class="tabs">
-                    <?php $this->widget('zii.widgets.CMenu',array(
-                    'items'=>array(
-                        array('label'=>'商家联盟', 'url'=>array('/'), 'linkOptions'=>array('class'=>'actived')),
-                        array('label'=>'杂志专区', 'url'=>array('/')),
-                        array('label'=>'营销大区', 'url'=>array('/')),
-                        array('label'=>'音乐家族', 'url'=>array('/')),
-                        array('label'=>'摄影家族', 'url'=>array('/')),
-                        array('label'=>'创业创新', 'url'=>array('/')),
-                        array('label'=>'关于我们', 'url'=>array('/')),
-                    ),
-                )); ?>
-                </div>
-                <div class="bg">
-                    <div class="nw"></div>
-                    <div class="cen"></div>
-                    <div class="cen"></div>
-                    <div class="cen"></div>
-                    <div class="cen"></div>
-                    <div class="ne"></div>
-                </div>
             </div>
+            <div class="clear"></div>
         </div>
-        <div class="bar clear"></div>
+    </div>
+   <div id="logo">
+       <?php echo CHtml::link(CHtml::encode(Yii::app()->name),array('/'),array('id'=>'loginButton')); ?>
+   </div>
+    <div id="main_menu">
+        <div id="nav">
+            <?php $this->widget('zii.widgets.CMenu',array(
+            'items'=>array(
+                array('label'=>'商家联盟', 'url'=>array('/'), 'linkOptions'=>array('class'=>'current')),
+                array('label'=>'杂志专区', 'url'=>array('/')),
+                array('label'=>'营销大区', 'url'=>array('/')),
+                array('label'=>'音乐家族', 'url'=>array('/')),
+                array('label'=>'摄影家族', 'url'=>array('/')),
+                array('label'=>'创业创新', 'url'=>array('/')),
+                array('label'=>'关于我们', 'url'=>array('/')),
+            ),
+        )); ?>
+        </div>
+        <div class="search_block"><input type="text" /></div>
+        <div class="clear"></div>
     </div>
 	<div id="content">
 		<?php echo $content; ?>

@@ -9,6 +9,9 @@ body,ul,li{
 .clear{
 	clear:both;
 }
+li{
+    list-style-type: none;
+}
 span.required{
     color: red;
 }
@@ -21,6 +24,7 @@ a,a:visited{
 }
 a:hover{
 	color:#183D00;
+    text-decoration: underline;
 }
 #logo a{
     font-size: 30px;
@@ -48,23 +52,17 @@ a:hover{
 .first_horizon_menu{
 	margin-right:10px;
 }
+#top{
+    background: url('../images/top.jpg') white repeat-x 0 0;
+    height: 26px;
+    line-height: 26px;
+}
+#top a{
+    color: black;
+}
 #header_main ,#content{
 	width:980px;
 	margin:0 auto;
-}
-#header_main{
-    margin-top: 10px;
-}
-#mainmenu li{
-	list-style-type:none;
-	float:left;
-}
-#mainmenu ul{
-	padding:0;
-	margin:0;
-}
-#mainmenu a{
-	text-decoration:none;
 }
 .shop{
 	width:312px;
@@ -111,26 +109,56 @@ a:hover{
 .top_menu{
     margin-left: 5px;
 }
-#registration{
+#registration, #logo, #main_menu{
     width: 980px;
     margin: 0 auto;
 }
-#mainmenu{position:relative;width:100%;margin-bottom: 10px;}
-div.bar{position:relative;height:42px;background:url(../images/mainmenu.bg14_6x42.gif) repeat-x;}
-#mainmenu div.tabbar{width:980px;margin: 0 auto}
-#mainmenu .tabbar div.tabs{position:absolute;top:41px;font-size:14px;font-weight:bold;}/*Download by http://www.jb51.net*/
-#mainmenu .tabbar .tabs a{float:left;width:80px;height:24px;line-height:24px;padding-top:7px;text-align:center;color: #183D00;font-weight:lighter;font-size:14px;background:transparent;}
-#mainmenu .tabbar .tabs a:hover{background:#fff url(../images/nav_hover_80x31.gif) no-repeat;text-decoration:none;margin-left:-1px;padding-left:1px;}
-#mainmenu .tabbar .tabs a.actived{background:#fff url(../images/nav_80x31.gif) no-repeat;font-weight:bold;color:#fff;margin-left:-1px;padding-left:1px;}
-#mainmenu .tabbar .tabs a.actived:hover{background:#fff url(../images/nav_80x31.gif) no-repeat;font-weight:bold;color:#fff;}
-#mainmenu .tabbar .bg{position:relative;left:80px;top:41px;width:560px;height:31px;z-index:-1;}
-#mainmenu .tabbar .bg .nw{float:left;width:80px;height:31px;background:transparent url(../images/navleft2_80x31.gif) no-repeat;}
-#mainmenu .tabbar .bg .cen{float:left;width:80px;height:31px;background:transparent url(../images/navlcenter_80x31.gif) no-repeat;}
-#mainmenu .tabbar .bg .ne{float:left;width:80px;height:31px;background:transparent url(../images/navright_80x31.gif) no-repeat;}
-#mainmenu .tabbar .float_icon{background:transparent url(../images/new01_18x19.gif) no-repeat;font-size:0;height:19px;line-height:0;position:absolute;right:403px;text-indent:-999px;top:-4px;width:18px;}
-#mainmenu{z-index:20;min-width:980px;}
-#mainmenu div.banner{position:relative;height:72px;z-index:10;}
-div.bar{height:3px;}
+#logo{
+    margin-top: 10px;
+}
+#main_menu{
+    height: 35px;
+    line-height: 35px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background: url(../images/menu_bg.png) repeat-x #008000 0 0;
+}
+#nav ul{
+    padding: 0;
+    margin: 0;
+}
+#nav li{
+    width: 100px;
+    float: left;
+}
+#nav li a{
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: white;
+}
+#nav li a:hover{
+    text-decoration: none;
+    background: url('../images/current.png') repeat-x #008000 0 0;
+}
+.current{
+    background: url('../images/current.png') repeat-x #008000 0 0;
+}
+.search_block{
+    float: right;
+    margin-right: 5px;
+}
+.search_block input{
+    height: 16px;
+    width: 150px;
+    background: url("../images/search.png") no-repeat scroll 5px 3px white;
+    border: 1px solid #DDDDDD;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+    line-height: 1.2em;
+    padding: 4px 10px 4px 28px;
+}
 .category_shop_list{
     height: 220px;
     margin-bottom: 20px;
