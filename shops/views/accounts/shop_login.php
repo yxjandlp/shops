@@ -2,7 +2,7 @@
 <div class="shopLoginForm">
     <?php $form=$this->beginWidget('CActiveForm');?>
     <p><?php echo $form->errorSummary($model);?></p>
-    <?php echo $form->label($model,'店铺编号:');?>
+    <?php echo $form->label($model,'商家编号:');?>
     <p><?php echo $form->textField($model,'id',array('class'=>'txt_input'));?></p>
     <p><?php echo $form->label($model,'管理密码:');?></p>
     <p><?php echo $form->passwordField($model,'admin_pwd',array('class'=>'txt_input'));?></p>

@@ -19,14 +19,14 @@ span.required{
     color: red;
 }
 a,a:visited{
-	color:#555555;
+    color: #8B8884;
 	text-decoration:none;
 }
 a:hover{
-	color:#183D00;
+	color:#000000;
     text-decoration: underline;
 }
-#logo a{
+#site_name{
     font-size: 30px;
     font-weight: bold;
 }
@@ -61,7 +61,7 @@ a:hover{
 #top a{
     color: black;
 }
-#header_main ,#content{
+#header_main ,#content,#main_content{
 	width:980px;
 	margin:0 auto;
 }
@@ -79,32 +79,25 @@ a:hover{
 	margin-right:10px;
 }
 #footer{
-	margin-top:40px;
-}
-.column{
-	float:left;
-	width:196px;
-}
-.column li{
-	font-size:14px;
-}
-.column_title{
-	color:#000000;
-	font-size:16px;
-}
-#site_map li{
-	list-style-type:none;
-}
-#site_map ul{
-	padding:0;
+    margin-top: 60px;
 }
 #site_map{
-	border-top: 1px solid #E7E8E9;
+    text-align: center;
+    color: #8B8884;
+}
+#site_map a{
+    color: #8B8884;
+    font-size: 15px;
+    margin: 0 5px;
+}
+#site_map a:hover{
+    color: #000000;
 }
 #copyright{
-	color:#666666;
-	font-size:15px;
-	margin-top:30px;
+    text-align: center;
+    color: #8B8884;
+	font-size:13px;
+	margin-top:15px;
 	margin-bottom:20px;
 }
 .top_menu{
@@ -194,14 +187,20 @@ a:hover{
 .more_shop{
     float: right;
 }
-.more_shop a{
-    color: #7A9999;
-}
-.more_shop a:hover{
-    text-decoration: underline;
-    color: #000000;
-}
 .shop_image{
     float: left;
     margin: 0 20px 20px 0;
+}
+.to_add_shop{
+    text-align: center;
+    color: white;
+    float: right;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+
+}
+.to_add_shop a{
+    font-size: 16px;
+    color: #ffffff;
 }

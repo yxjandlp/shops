@@ -44,11 +44,11 @@ class ShopController extends BaseController {
     public function accessRules(){
         return array(
             array('allow',
-                'actions'=>array('note', 'edit','manageNote','deleteNote', 'changeImage', 'noteDetail'),
+                'actions'=>array( 'edit', 'changeImage'),
                 'users'=>array('@'),
             ),
             array('allow',
-                'actions'=>array('show', 'index'),
+                'actions'=>array('show', 'index', 'category'),
                 'users'=>array('*'),
             ),
             array('deny',
@@ -74,7 +74,7 @@ class ShopController extends BaseController {
             $criteria->limit = 5;
             $models = ShopToCategory::model()->findAll($criteria);
             $shopsArray[] = array(
-                'category' => $category['name'],
+                'category' => $category,
                 'shops' => $models
             );
         }
@@ -84,18 +84,40 @@ class ShopController extends BaseController {
     }
 
     /**
+     * 分类浏览
+     */
+    public function actionCategory( $id )
+    {
+        $category = ShopCategory::model()->findByPk($id);
+        if ( ! $category ) {
+            throw new CHttpException(404);
+            Yii::app()->end();
+        }
+        $this->setPageTitle($category['name']);
+        $criteria = new CDbCriteria();
+        $criteria->with = array('category', 'shop');
+        $criteria->compare('category_id', $id);
+        $criteria->compare('is_active', Shops::IS_ACTIVE);
+        $shops = ShopToCategory::model()->findAll($criteria);
+        $this->render('category', array(
+            'category' => $category['name'],
+            'shops' => $shops
+        ));
+    }
+    /**
      * 店辅主页
      */
     public function actionShow( $id )
     {
-        $this->setPageTitle('商家');
         $shop = Shops::model()->findByPk($id);
         if( ! $shop ){
             throw new CHttpException(404);
         }
+        $this->setPageTitle($shop['title']);
         if( $shop->is_active == Shops::NOT_ACTIVE ){
             $this->render('shop_to_audit', array());
         }else{
+
             $this->render('show', array(
                 'shop' => $shop
             ));

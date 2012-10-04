@@ -1,0 +1,37 @@
+.shop_image_zone{
+    float: left;
+    width: 210px;
+    margin: 0 20px 20px 0;
+}
+.shop_image_zone p{
+    text-align: center;
+}
+.shop_operate{
+    width: 750px;
+    float: left;
+}
+.shop_show_center{
+    width: 400px;
+    float: left;
+}
+.operation{
+    width:250px;
+    float: right;
+}
+.operation li{
+    float: right;
+}
+.desc_title{
+    border-bottom: 1px dotted #808080;
+}
+#to_note{
+    background: url('../images/note.png') white 0 0 no-repeat;
+    height: 35px;
+    line-height: 35px;
+    width: 105px;
+    padding-left: 36px;
+}
+#to_note a{
+    color: #ffffff;
+}
+

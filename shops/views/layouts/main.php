@@ -8,6 +8,7 @@
     <?php Yii::app()->clientScript->registerCoreScript('jquery');?>
     <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/jalert/jquery.jalert.packed.js');?>
     <?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/jalert/jalert.css');?>
+    <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/main.js');?>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 <body>
@@ -31,7 +32,8 @@
         </div>
     </div>
    <div id="logo">
-       <?php echo CHtml::link(CHtml::encode(Yii::app()->name),array('/'),array('id'=>'loginButton')); ?>
+       <?php echo CHtml::link(CHtml::encode(Yii::app()->name),array('/'), array('id'=>"site_name")); ?>
+       <div class="to_add_shop"><a href="#">商家加盟</a></div>
    </div>
     <div id="main_menu">
         <div id="nav">
@@ -43,11 +45,11 @@
                 array('label'=>'音乐家族', 'url'=>array('/')),
                 array('label'=>'摄影家族', 'url'=>array('/')),
                 array('label'=>'创业创新', 'url'=>array('/')),
-                array('label'=>'关于我们', 'url'=>array('/')),
+
             ),
         )); ?>
         </div>
-        <div class="search_block"><input type="text" /></div>
+        <div class="search_block"><input type="text" id="search"/></div>
         <div class="clear"></div>
     </div>
 	<div id="content">
@@ -56,7 +58,7 @@
 			<?php include('_sitemap.php');?>
 			<div class='clear'></div>
 			<div id="copyright">
-				Copyright &copy; <?php echo date('Y').' '.Yii::app()->params['copyrightInfo']; ?>All Rights Reserved.<br/>
+				Copyright &copy; <?php echo date('Y').' '.Yii::app()->params['copyrightInfo']; ?>
 			</div>
 		</div>
 	</div>

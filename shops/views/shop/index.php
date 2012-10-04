@@ -1,8 +1,8 @@
 <?php  foreach( $shopGroups as $shopGroup ): ?>
     <div class="category_shop_list">
     <h3>
-        <?php echo $shopGroup['category'];?>
-        <span class="more_shop"><a href="">更多&gt;&gt;</a></span>
+        <?php echo $shopGroup['category']['name'];?>
+        <span class="more_shop"><a href="<?php echo Yii::app()->createUrl('shop/category', array('id'=>$shopGroup['category']['id']));?>">更多»</a></span>
     </h3>
     <div class="shop_shelf">
         <?php if( ! empty($shopGroup['shops']) ):?>

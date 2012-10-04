@@ -1,0 +1,22 @@
+.shop_block{
+    display: block;
+    height: 140px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px dotted grey;
+    font-size: 15px;
+}
+.shop_block img{
+    float: left;
+    padding: 0 10px 10px 0;
+}
+.enter_shop{
+    float: right;
+}
+.category_block_title{
+    margin: 20px 0 30px 0;
+}
+.category_block_title a{
+    color: #000000 !important;
+}
