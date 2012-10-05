@@ -1,4 +1,5 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/css/login.css');?>
+<br />
 <div class="loginForm">
     <?php $form=$this->beginWidget('CActiveForm');?>
     <p><?php echo $form->errorSummary($model);?></p>

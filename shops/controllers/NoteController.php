@@ -85,6 +85,10 @@ class NoteController extends BaseController {
      */
     public function actionAdd( $id )
     {
+        $shop = Shops::model()->findByPk($id);
+        if ( ! $shop  ) {
+            throw new CHttpException(404);
+        }
         $this->setPageTitle('留言');
 
         if( Yii::app()->user->getState('role') != 'member' ){
@@ -106,7 +110,8 @@ class NoteController extends BaseController {
             }
         }
         $this->render('add', array(
-            'model' => $model
+            'model' => $model,
+            'shop' => $shop
         ));
     }
 
@@ -116,14 +121,14 @@ class NoteController extends BaseController {
     public function actionDetail( $id )
     {
         $note = Note::model()->findByPk($id);
-        if( $note ){
-            $this->checkOwner($note['shop_id']);
-            $this->render('detail', array(
-                'note' => $note
-            ));
-        }else{
+        if ( ! $note  ) {
             throw new CHttpException(404);
         }
+        $this->setPageTitle('留言详细内容');
+        $this->checkOwner($note['shop_id']);
+        $this->render('detail', array(
+            'note' => $note
+        ));
     }
 
     /**

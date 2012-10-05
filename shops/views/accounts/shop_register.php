@@ -16,7 +16,8 @@
         </tr>
         <tr>
             <td><?php echo $form->labelEx($model,'category'); ?></td>
-            <td><?php echo $form->dropDownList($model, 'category',$categoryList); ?>
+            <td>
+                <?php echo $form->dropDownList($model, 'category',$categoryList); ?>
             </td>
             <td><?php echo $form->error($model,'title',array('class'=>'error_msg'));?></td>
         </tr>
@@ -32,10 +33,9 @@
         </tr>
         <tr>
             <td><?php echo $form->labelEx($model,'image'); ?></td>
-            <td><?php echo $form->fileField($model,'image') ?></td>
+            <td><?php echo $form->fileField($model,'image') ?><span class="notice">(请选择格式为jpg、gif、png大小不超过2M的图片)</span></td>
             <td><?php echo $form->error($model,'image',array('class'=>'error_msg'));?></td>
         </tr>
-
         <?php $this->widget('webroot.plugin.kindeditor.KindEditor',
         array(
             'model'=>$model,
@@ -49,7 +49,7 @@
         <tr>
             <td>&nbsp;</td>
             <td>
-                <?php echo CHtml::SubmitButton('确定', array('name'=>'add_shop', 'id'=>'register_shop'));?>&nbsp;
+                <?php echo CHtml::SubmitButton('确定', array('name'=>'add_shop', 'id'=>'register_shop', 'class'=>'blue_btn'));?>&nbsp;
             </td>
         </tr>
     </table>

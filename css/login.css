@@ -9,16 +9,7 @@
     color: #777777;
     cursor: text;
 }
-.blue_btn {
-    background: white url('../images/register.gif') no-repeat -5px top;
-    border: 1px solid #3282D0;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    padding: 3px 10px;
-    text-align: center;
-}
+
 .loginForm {
     width: 490px;
     float: left;
@@ -38,6 +29,7 @@
 #goto_shop_login a:hover{
     text-decoration: underline;
 }
-.errorSummary li{
-    color: red;
+
+.shopLoginForm{
+    margin-top: 20px;
 }
