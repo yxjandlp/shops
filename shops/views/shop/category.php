@@ -11,9 +11,12 @@
             <p>店名：<b><?php echo $shop['shop']['title'];?></b></p>
             <p>加盟时间：<b><?php echo date('Y年n月d日',$shop['shop']['join_time']);?></b></p>
         </div>
-        <?php endforeach;?>
-        <div class="clear"></div>
-        <?php else:?>
+    <?php endforeach;?>
+    <div class="clear"></div>
+    <?php else:?>
     <div>--暂无--</div>
     <?php endif;?>
+</div>
+<div style="margin: 10px 0 0 0">
+    <?php $this->widget('CLinkPager',$pages);?>
 </div>

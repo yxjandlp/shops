@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="Description" content="大学窝是一个面向大学生的商家信息展示平台，包括商家联盟、杂志专区、营销大区、音乐家族、摄影家族、创业创新几大版块" />
@@ -16,17 +16,29 @@
     <div id="top">
         <div id="header_main">
             <div id="accounts">
-                <?php $this->widget('zii.widgets.CMenu',array(
-                'items'=>array(
-                    array('label'=>'登录', 'url'=>Yii::app()->homeUrl.'login?go_url='.$this->getReturnUrl(),'linkOptions'=>array('id'=>'loginButton'), 'visible'=>Yii::app()->user->isGuest),
-                    array('label'=>'快速注册', 'url'=>array('register/'), 'linkOptions'=>array('id'=>'registerButton'), 'visible'=>Yii::app()->user->isGuest),
-                    array('label'=>Yii::app()->user->name, 'visible'=>!Yii::app()->user->isGuest),
-                    array('label'=>'进入我的店辅', 'url'=>Yii::app()->createUrl('shop/show',array('id'=>Yii::app()->user->getId())), 'visible'=>(Yii::app()->user->getState('role')=='shop')),
-                    array('label'=>'修改密码', 'url'=>array('accounts/changePassword'), 'visible'=>!Yii::app()->user->isGuest),
-                    array('label'=>'注销', 'url'=>array('logout/'), 'visible'=>!Yii::app()->user->isGuest),
-                ),
-                'itemCssClass'=>'top_menu',
-            )); ?>
+                <ul>
+                    <?php if( Yii::app()->user->isGuest ):?>
+                    <li><a href="<?php echo Yii::app()->homeUrl.'login?go_url='.$this->getReturnUrl();?>" class="first_horizon_menu">登录</a></li>
+                    <li><a href="<?php echo Yii::app()->createUrl('register/');?>">快速注册</a></li>
+                    <?php endif;?>
+                    <?php if( ! Yii::app()->user->isGuest):?>
+                    <li><?php echo Yii::app()->user->name;?></li>
+                    <?php endif;?>
+                    <?php if(Yii::app()->user->getState('role')=='shop'):?>
+                    <li><a href="<?php echo Yii::app()->createUrl('shop/show',array('id'=>Yii::app()->user->getId()));?>">进入我的店辅</a></li>
+                    <?php endif;?>
+                    <?php if( ! Yii::app()->user->isGuest):?>
+                    <li class="account_li">
+                        <a href="javascript:void(0);" class="account_label">帐号</a>
+                        <div class="drop_list_menu">
+                            <ul>
+                                <li><a href="<?php echo Yii::app()->createUrl('accounts/changePassword');?>">修改密码</a></li>
+                                <li><a href="<?php echo Yii::app()->createUrl('logout/');?>">退出</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <?php endif;?>
+                </ul>
             </div>
             <div class="clear"></div>
         </div>
@@ -49,7 +61,11 @@
             ),
         )); ?>
         </div>
-        <div class="search_block"><input type="text" id="search"/></div>
+        <div class="search_block">
+            <form name="search" id="search_form" action="<?php echo Yii::app()->createUrl('search/');?>" method="get">
+                <input type="text" id="search" name="keyword" value=""/>
+            </form>
+        </div>
         <div class="clear"></div>
     </div>
 	<div id="content">
@@ -63,5 +79,10 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(document).onkeydown = Search;
+    });
+</script>
 </body>
 </html>

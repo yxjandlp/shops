@@ -21,11 +21,11 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('#login').click(function(){
-            if ($('#UserForm_username').val().trim() == '') {
+            if (trim($('#UserForm_username').val()) == '') {
                 $('#UserForm_username').jAlert('请输入用户名',"fatal", 'errboxid');
                 return false;
             }
-            if ($('#UserForm_password').val().trim() == '') {
+            if (trim($('#UserForm_password').val()) == '') {
                 $('#UserForm_password').jAlert('请输入密码',"fatal", 'errboxid');
                 return false;
             }

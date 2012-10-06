@@ -97,6 +97,7 @@ class ShopsController extends AdminBaseController
 
             Shops::model()->deleteAll($criteria1);
             ShopToCategory::model()->deleteAll($criteria2);
+            Note::model()->deleteAll($criteria2);
             $this->showSuccessMessage('删除成功', Yii::app()->createUrl('shops/'));
         }
     }

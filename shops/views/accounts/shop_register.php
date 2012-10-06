@@ -58,19 +58,19 @@
 <script type="text/javascript">
     $(document).ready(function(){
        $('#register_shop').click(function(){
-           if ($('#ShopForm_title').val().trim() == '') {
+           if (trim($('#ShopForm_title').val()) == '') {
                $('#ShopForm_title').jAlert('请填写商家标题',"fatal", 'errboxid');
                return false;
            }
-           if ($('#ShopForm_admin_pwd').val().trim() == '') {
+           if (trim($('#ShopForm_admin_pwd').val()) == '') {
                $('#ShopForm_admin_pwd').jAlert('请填写管理密码',"fatal", 'errboxid');
                return false;
            }
-           if ($('#ShopForm_confirm_pwd').val().trim() == '') {
+           if (trim($('#ShopForm_confirm_pwd').val()) == '') {
                $('#ShopForm_confirm_pwd').jAlert('请确认密码',"fatal", 'errboxid');
                return false;
            }
-           if ($('#ShopForm_image').val().trim() == '') {
+           if (trim($('#ShopForm_image').val()) == '') {
                $('#ShopForm_image').jAlert('请选商家图片',"fatal", 'errboxid');
                return false;
            }

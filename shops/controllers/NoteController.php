@@ -68,14 +68,23 @@ class NoteController extends BaseController {
             Note::model()->updateAll(array('is_handled'=>1),'shop_id='.$id.' and id in('.implode(',',$noteIdArray).')');
             $this->showSuccessMessage('设置成功', Yii::app()->createUrl('note/'));
         }
-        $model = new Note('search');
-        $model->shop_id = $id;
+
+        $criteria = new CDbCriteria();
+        $criteria->addColumnCondition(array('shop_id'=>$id));
         if ( in_array($filter, array('0','1'), true) ) {
-            $model->is_handled = $filter;
+            $criteria->addColumnCondition(array('is_handled'=>$filter));
         }
+        $dataProvider = new CActiveDataProvider('Note',array(
+            'pagination'=>array(
+                'pageSize'=>20,
+            ),
+            'criteria'=>$criteria,
+        ));
+        $shop = Shops::model()->findByPk($id);
+
         $this->render('index', array(
-            'model' => $model,
-            'shop_id' => $id,
+            'dataProvider' => $dataProvider,
+            'shop' => $shop,
             'filter' => $filter
         ));
     }
@@ -126,8 +135,10 @@ class NoteController extends BaseController {
         }
         $this->setPageTitle('留言详细内容');
         $this->checkOwner($note['shop_id']);
+        $shop = Shops::model()->findByPk($note['shop_id']);
         $this->render('detail', array(
-            'note' => $note
+            'note' => $note,
+            'shop' => $shop
         ));
     }
 

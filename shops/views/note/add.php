@@ -11,10 +11,11 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('#add_note').click(function(){
-            if ($('#note_text').val().trim() == '') {
+            if (trim($('#note_text').val()) == '') {
                 $('#note_text').jAlert('请输入留言内容',"fatal", 'errboxid');
                 return false;
             }
         });
+        $('#note_text').focus();
     });
 </script>

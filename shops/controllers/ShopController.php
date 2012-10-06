@@ -48,7 +48,7 @@ class ShopController extends BaseController {
                 'users'=>array('@'),
             ),
             array('allow',
-                'actions'=>array('show', 'index', 'category'),
+                'actions'=>array('show', 'index', 'category', 'search'),
                 'users'=>array('*'),
             ),
             array('deny',
@@ -62,7 +62,7 @@ class ShopController extends BaseController {
      */
     public function actionIndex()
     {
-        $this->setPageTitle('首页');
+        $this->setPageTitle('商家联盟');
 
         $shopsArray = array();
         $categories = ShopCategory::model()->findAll();
@@ -98,10 +98,22 @@ class ShopController extends BaseController {
         $criteria->with = array('category', 'shop');
         $criteria->compare('category_id', $id);
         $criteria->compare('is_active', Shops::IS_ACTIVE);
+
+        $count = ShopToCategory::model()->count($criteria);
+        $pages = new CPagination($count);
+        $pages->pageSize = 10;
+        $pages->applyLimit($criteria);
+
         $shops = ShopToCategory::model()->findAll($criteria);
         $this->render('category', array(
             'category' => $category['name'],
-            'shops' => $shops
+            'shops' => $shops,
+            'pages' => array(
+                'pages'=>$pages,
+                'header'=>'',
+                'prevPageLabel'=>'<',
+                'nextPageLabel'=>'>',
+            )
         ));
     }
     /**
@@ -183,6 +195,24 @@ class ShopController extends BaseController {
         $this->render('change_image', array(
             'shop' => $shop,
             'model' => $model
+        ));
+    }
+
+    /**
+     * 搜索商家
+     */
+    public function actionSearch()
+    {
+        $keyword = $this->getRequestParam('keyword');
+        $this->setPageTitle('搜索['.$keyword.']');
+        $criteria = new CDbCriteria();
+        if( $keyword ){
+            $criteria->addSearchCondition('title', $keyword);
+        }
+        $shops = Shops::model()->findAll($criteria);
+        $this->render('search',array(
+            'keyword' => $keyword,
+            'shops' => $shops
         ));
     }
 

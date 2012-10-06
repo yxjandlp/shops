@@ -16,15 +16,15 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('#login').click(function(){
-            if ($('#PasswordChangeForm_oldPassword').val().trim() == '') {
+            if (trim($('#PasswordChangeForm_oldPassword').val()) == '') {
                 $('#PasswordChangeForm_oldPassword').jAlert('请输入旧密码',"fatal", 'errboxid');
                 return false;
             }
-            if ($('#PasswordChangeForm_newPassword').val().trim() == '') {
+            if (trim($('#PasswordChangeForm_newPassword').val()) == '') {
                 $('#PasswordChangeForm_newPassword').jAlert('请输入新密码',"fatal", 'errboxid');
                 return false;
             }
-            if ($('#PasswordChangeForm_confirmNewPassword').val().trim() == '') {
+            if (trim($('#PasswordChangeForm_confirmNewPassword').val()) == '') {
                 $('#PasswordChangeForm_confirmNewPassword').jAlert('请确认新密码',"fatal", 'errboxid');
                 return false;
             }

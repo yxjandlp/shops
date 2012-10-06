@@ -1,6 +1,7 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/css/admin/add_shop.css');?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/plugin/kindeditor/kindeditor-min.js');?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/plugin/kindeditor/lang/zh_CN.js');?>
+<h3><?php echo $model['title'];?></h3>
 <div class="add_shop">
     <?php $form=$this->beginWidget('CActiveForm',array(
     'id'=>'addShopForm',

@@ -11,6 +11,9 @@
     $this->widget('zii.widgets.grid.CGridView', array(
         'selectableRows'=>2,
         'dataProvider'=>$dataProvider,
+        'pager' => array(
+            'class'=>'CLinkPager',
+        ),
         'columns' => array(
             array('class'=>'CCheckBoxColumn','name'=>'shop.id','id'=>'select'),
             array(

@@ -9,13 +9,17 @@ body,ul,li{
 .clear{
 	clear:both;
 }
+img{
+    border: 0;
+}
 li{
     list-style-type: none;
 }
 span.required{
     color: red;
 }
-.error_msg{
+
+.red,.error_msg{
     color: red;
 }
 a,a:visited{
@@ -44,7 +48,7 @@ a:hover{
 #accounts a{
     font-size: 13px;
 	display:block;
-    margin-left: 5px;
+    margin-left: 7px;
 }
 #accounts a:hover{
 	text-decoration:underline;
@@ -140,11 +144,14 @@ a:hover{
     background: url('../images/current.png') repeat-x #008000 0 0;
 }
 .search_block{
+    height: 35px;
+    line-height: 35px;
     float: right;
     margin-right: 5px;
 }
 .search_block input{
-    height: 16px;
+    margin-top: 4px;
+    height: 15px;
     width: 150px;
     background: url("../images/search.png") no-repeat scroll 5px 3px white;
     border: 1px solid #DDDDDD;
@@ -158,20 +165,22 @@ a:hover{
     margin-bottom: 20px;
     border: 1px solid #D3D3D3;
 }
-.category_shop_list h3{
+.category_shop_title{
     font-size: 15px;
     height: 30px;
     line-height: 30px;
     padding:0 10px;
     margin: 0;
     background: url("../images/title_bg.gif") #EDF2F7 repeat-x 0 0;
+    font-size: 15px;
+    font-weight: bold;
 }
 .shop_shelf{
     padding: 10px 0 0 10px;
 }
 .shop_shelf span{
     width: 174px;
-    margin-right: 20px;
+    margin-right: 19px;
     float: left;
 }
 .shop_shelf img{
@@ -183,6 +192,9 @@ a:hover{
     text-align: center;
     height: 30px;
     line-height: 30px;
+}
+.category_name{
+    float: left;
 }
 .more_shop{
     float: right;
@@ -216,4 +228,21 @@ a:hover{
 }
 .errorSummary li{
     color: red;
+}
+.drop_list_menu{
+    display: none;
+    position: absolute;
+    top: 30px;
+    z-index: 99999;
+    overflow: hidden;
+    width: 100px;
+    border: 1px solid #D3D3D3;
+    background: #ffffff;
+}
+.drop_list_menu li{
+    display: block;
+    float: none !important;
+}
+a.account_label:hover{
+    text-decoration: none !important;
 }

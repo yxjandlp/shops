@@ -1,3 +1,15 @@
-<p>留言者：<?php echo $note['username'];?></p>
-<p>留言内容：<?php echo $note['message'];?></p>
-<p>留言时间：<?php  echo date("Y/m/d H:i:s",$note['create_time']);?></p>
+<?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/css/note.css');?>
+<h3>留言内容：</h3>
+<div class="note_detail">
+    <h3><?php echo $shop['title'];?>：</h3>
+    <pre>
+        <?php echo $note['message'];?>
+    </pre>
+    <div class="note_bottom">
+        <p><b><?php echo $note['username'];?></b></p>
+        <p></p><b><?php  echo date("Y年n月d日",$note['create_time']);?></b></p>
+    </div>
+    <div class="clear"></div>
+</div>
+
+

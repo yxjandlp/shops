@@ -14,11 +14,11 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('#login').click(function(){
-            if ($('#ShopForm_id').val().trim() == '') {
+            if (trim($('#ShopForm_id').val()) == '') {
                 $('#ShopForm_id').jAlert('请输入店辅编号',"fatal", 'errboxid');
                 return false;
             }
-            if ($('#ShopForm_admin_pwd').val().trim() == '') {
+            if (trim($('#ShopForm_admin_pwd').val()) == '') {
                 $('#ShopForm_admin_pwd').jAlert('请输入管理密码',"fatal", 'errboxid');
                 return false;
             }

@@ -37,6 +37,7 @@ return array(
                 'register/' => 'accounts/register',
                 'logout/' => 'accounts/logout',
                 'registerSuccess' => 'accounts/registerSuccess',
+                'search' => 'shop/search'
             )
         ),
     ),

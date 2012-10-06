@@ -1,0 +1,15 @@
+.error_show{
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 50px;
+}
+.error_show a{
+    color: #0000ff;
+}
+.power_by{
+    border-top: 1px solid grey;
+    margin-top: 100px;
+    padding-top: 10px;
+    color: grey;
+}

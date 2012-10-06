@@ -1,3 +1,4 @@
+<h3><?php echo $shop['title'];?></h3>
 <?php echo CHtml::image(Yii::app()->request->baseUrl.'/assets/upload/shops/'.$shop['image'].'?'.rand(),$shop['title'],array('width'=>210, 'class'=>'shop_image'));?>
 <div class="clear"></div>
 <?php $form=$this->beginWidget('CActiveForm',array(
