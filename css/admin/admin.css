@@ -75,4 +75,21 @@ li{
     font-weight: bold;
     color: red;
 }
+#logo{
+    width: 150px;
+    float: left;
+}
+.admin_account{
+    float: right;
+    color: white;
+}
+.admin_account a{
+    margin-right: 20px;
+    height: 36px;
+    line-height: 36px;
+    color: white;
+}
+.admin_account a:hover{
+    text-decoration: underline;
+}
 

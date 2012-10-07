@@ -25,4 +25,13 @@ class AdminLoginController extends BaseController
             'model' => $model,
         ));
     }
+
+    /*
+    * 注销登录
+    */
+    public function actionLogout()
+    {
+        Yii::app()->user->logout();
+        echo '<script type="text/javascript">parent.window.location.href="' .Yii::app()->createUrl('adminLogin/'). '"</script>';
+    }
 }
