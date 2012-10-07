@@ -39,7 +39,8 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('.QapTcha').QapTcha({
-            PHPfile:'<?php echo Yii::app()->request->baseUrl.'/plugin/QapTcha/QapTcha.jquery.php';?>',
+           // PHPfile:'<?php echo Yii::app()->request->baseUrl.'/plugin/QapTcha/QapTcha.jquery.php';?>',
+            PHPfile: '<?php echo Yii::app()->createUrl("accounts/QapTcha");?>',
             txtLock:'请先滑动方块解锁',
             txtUnlock:'已解锁'
         });

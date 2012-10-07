@@ -45,7 +45,8 @@ class ShopsController extends AdminBaseController
                 $model->join_time = $joinTime;
                 $model->image = $joinTime.'.'.$shopImage->extensionName;
                 $model->admin_pwd = sha1($shopInfoArray['admin_pwd']);
-                if ( $shopImage->saveAs('assets/upload/shops/'.$model->image) && ImageUtils::CropImage('assets/upload/shops', $model->image, 174, 140) && ( $insertId = $model->addShopByAdmin()) ) {
+                $saveImageName = $joinTime .'_174x140.jpg';
+                if ( $shopImage->saveAs('assets/upload/shops/'.$model->image) && ImageUtils::createThumbnail(174, 140, 'assets/upload/shops/'.$model->image, 'assets/upload/shops/'.$saveImageName) && ( $insertId = $model->addShopByAdmin()) ) {
                     if ( $model->addShopToCategory($insertId) )
                         $this->showSuccessMessage('添加成功', Yii::app()->createUrl('shops/index'));
                 }else{

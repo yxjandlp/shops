@@ -44,7 +44,7 @@
         </div>
     </div>
    <div id="logo">
-       <?php echo CHtml::link(CHtml::encode(Yii::app()->name),array('/'), array('id'=>"site_name")); ?>
+       <?php echo CHtml::link(CHtml::encode(Yii::app()->name),array('shop/'), array('id'=>"site_name")); ?>
        <div class="to_add_shop"><a href="#">商家加盟</a></div>
    </div>
     <div id="main_menu">

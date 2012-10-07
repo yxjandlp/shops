@@ -58,4 +58,21 @@ class ImageUtils
         imagedestroy($target);
         return true;
     }
+
+    /**
+     * 生成缩略图
+     *
+     * @param int $maxWidth
+     * @param int $maxHeight
+     * @param string $sourceImage
+     * @param string $destImage
+     * @paran boolean $output
+     */
+    public static function createThumbnail( $maxWidth, $maxHeight, $sourceImage, $destImage, $output=false )
+    {
+        $thumb = new Thumbnail(1, $maxWidth, $maxHeight);
+        $thumb->createThumbnail($sourceImage, $destImage , $output);
+        return true;
+    }
+
 }

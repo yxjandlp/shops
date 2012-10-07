@@ -1,10 +1,11 @@
 @CHARSET "UTF-8";
 body{
     font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Helvetica,Arial,sans-serif;
+    font-size: 90%;
 }
 body,ul,li{
 	margin:0;
-	pading:0;
+	padding:0;
 }
 .clear{
 	clear:both;

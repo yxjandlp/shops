@@ -45,7 +45,7 @@ class AccountsController extends BaseController
                 'users'=>array('@'),
             ),
             array('allow',
-                'actions'=>array('index', 'login', 'register', 'shopRegister', 'RegisterSuccess','shopRegisterSuccess', 'shopLogin'),
+                'actions'=>array('index', 'login', 'register', 'shopRegister', 'RegisterSuccess','shopRegisterSuccess', 'shopLogin', 'QapTcha'),
                 'users'=>array('*'),
             ),
             array('deny',
@@ -144,7 +144,8 @@ class AccountsController extends BaseController
                 $model->join_time = $joinTime;
                 $model->image = $joinTime.'.'.$shopImage->extensionName;
                 $model->admin_pwd = sha1($shopInfoArray['admin_pwd']);
-                if ( $shopImage->saveAs('assets/upload/shops/'.$model->image) && ImageUtils::CropImage('assets/upload/shops', $model->image, 174, 140) && ( $insertId = $model->addShop()) ) {
+                $saveImageName = $joinTime .'_174x140.jpg';
+                if ( $shopImage->saveAs('assets/upload/shops/'.$model->image) && ImageUtils::createThumbnail(174, 140, 'assets/upload/shops/'.$model->image, 'assets/upload/shops/'.$saveImageName) && ( $insertId = $model->addShop()) ) {
                     if ( $model->addShopToCategory($insertId) )
                         $this->redirect('shopRegisterSuccess?insertId='.$insertId);
                 }else{
@@ -210,6 +211,27 @@ class AccountsController extends BaseController
         $this->render('password_change',array(
             'model' => $model
         ));
+    }
+
+    /**
+     * 滑动解锁验证
+     */
+    public function actionQapTcha()
+    {
+        $aResponse['error'] = false;
+        if(isset($_POST['action']) && isset($_POST['qaptcha_key'])){
+            $_SESSION['qaptcha_key'] = false;
+            if(htmlentities($_POST['action'], ENT_QUOTES, 'UTF-8') == 'qaptcha'){
+                $_SESSION['qaptcha_key'] = $_POST['qaptcha_key'];
+                echo json_encode($aResponse);
+            }else{
+                $aResponse['error'] = true;
+                echo json_encode($aResponse);
+            }
+        }else{
+            $aResponse['error'] = true;
+            echo json_encode($aResponse);
+        }
     }
 
 }
