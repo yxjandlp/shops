@@ -171,8 +171,9 @@ class ShopsController extends AdminBaseController
             $model->attributes = $shopInfoArray;
             $shopImage = CUploadedFile::getInstance($model, 'image');
             $model->image = $shopImage;
+            $saveImageName = $shop->join_time .'_174x140.jpg';
             if ( $model->validate() ) {
-                if (  $shopImage->saveAs('assets/upload/shops/'.$shop->image) ) {
+                if (  $shopImage->saveAs('assets/upload/shops/'.$shop->image) && ImageUtils::createThumbnail(174, 140, 'assets/upload/shops/'.$shop->image, 'assets/upload/shops/'.$saveImageName) ) {
                     $this->showSuccessMessage('修改成功', Yii::app()->createUrl('shops/changeImage',array('shop_id'=>$id)));
                 }
             }
