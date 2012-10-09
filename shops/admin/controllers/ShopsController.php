@@ -46,7 +46,7 @@ class ShopsController extends AdminBaseController
                 $model->image = $joinTime.'.'.$shopImage->extensionName;
                 $model->admin_pwd = sha1($shopInfoArray['admin_pwd']);
                 $saveImageName = $joinTime .'_174x140.jpg';
-                if ( $shopImage->saveAs('assets/upload/shops/'.$model->image) && ImageUtils::createThumbnail(174, 140, 'assets/upload/shops/'.$model->image, 'assets/upload/shops/'.$saveImageName) && ( $insertId = $model->addShopByAdmin()) ) {
+                if ( $shopImage->saveAs(Constant::getShopImageUploadPath().$model->image) && ImageUtils::createThumbnail(174, 140, Constant::getShopImageUploadPath().$model->image, Constant::getShopImageUploadPath().$saveImageName) && ( $insertId = $model->addShopByAdmin()) ) {
                     if ( $model->addShopToCategory($insertId) )
                         $this->showSuccessMessage('添加成功', Yii::app()->createUrl('shops/index'));
                 }else{
@@ -173,7 +173,7 @@ class ShopsController extends AdminBaseController
             $model->image = $shopImage;
             $saveImageName = $shop->join_time .'_174x140.jpg';
             if ( $model->validate() ) {
-                if (  $shopImage->saveAs('assets/upload/shops/'.$shop->image) && ImageUtils::createThumbnail(174, 140, 'assets/upload/shops/'.$shop->image, 'assets/upload/shops/'.$saveImageName) ) {
+                if (  $shopImage->saveAs(Constant::getShopImageUploadPath().$shop->image) && ImageUtils::createThumbnail(174, 140, Constant::getShopImageUploadPath().$shop->image, Constant::getShopImageUploadPath().$saveImageName) ) {
                     $this->showSuccessMessage('修改成功', Yii::app()->createUrl('shops/changeImage',array('shop_id'=>$id)));
                 }
             }

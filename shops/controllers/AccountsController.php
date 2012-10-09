@@ -145,7 +145,7 @@ class AccountsController extends BaseController
                 $model->image = $joinTime.'.'.$shopImage->extensionName;
                 $model->admin_pwd = sha1($shopInfoArray['admin_pwd']);
                 $saveImageName = $joinTime .'_174x140.jpg';
-                if ( $shopImage->saveAs('assets/upload/shops/'.$model->image) && ImageUtils::createThumbnail(174, 140, 'assets/upload/shops/'.$model->image, 'assets/upload/shops/'.$saveImageName) && ( $insertId = $model->addShop()) ) {
+                if ( $shopImage->saveAs(Constant::getShopImageUploadPath().$model->image) && ImageUtils::createThumbnail(174, 140, Constant::getShopImageUploadPath().$model->image, Constant::getShopImageUploadPath().$saveImageName) && ( $insertId = $model->addShop()) ) {
                     if ( $model->addShopToCategory($insertId) )
                         $this->redirect('shopRegisterSuccess?insertId='.$insertId);
                 }else{

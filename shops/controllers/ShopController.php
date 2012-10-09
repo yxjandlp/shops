@@ -207,13 +207,25 @@ class ShopController extends BaseController {
         $keyword = $this->getRequestParam('keyword');
         $this->setPageTitle('搜索['.$keyword.']');
         $criteria = new CDbCriteria();
+        $criteria->addColumnCondition(array('is_active'=>Shops::IS_ACTIVE));
         if( $keyword ){
             $criteria->addSearchCondition('title', $keyword);
         }
+        $count = Shops::model()->count($criteria);
+        $pages = new CPagination($count);
+        $pages->pageSize = 10;
+        $pages->applyLimit($criteria);
+
         $shops = Shops::model()->findAll($criteria);
         $this->render('search',array(
             'keyword' => $keyword,
-            'shops' => $shops
+            'shops' => $shops,
+            'pages' => array(
+                'pages'=>$pages,
+                'header'=>'',
+                'prevPageLabel'=>'<',
+                'nextPageLabel'=>'>',
+            )
         ));
     }
 

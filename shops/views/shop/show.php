@@ -2,7 +2,7 @@
 <h3><?php echo $shop['title'];?></h3>
 <div class="shop_show_top">
     <div class="shop_image_zone">
-        <?php echo CHtml::image(Yii::app()->request->baseUrl.'/assets/upload/shops/'.$shop['image'],$shop['title'],array('width'=>210, 'class'=>'shop_show_image'));?>
+        <?php echo CHtml::image(Constant::getShopImagePath().$shop['image'],$shop['title'],array('width'=>210, 'class'=>'shop_show_image'));?>
     </div>
     <div class="shop_operate">
         <div class="operation">

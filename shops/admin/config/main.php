@@ -34,6 +34,7 @@ return array(
 				'admin.models.*',
 				'frontend.models.*',
 				'frontend.common.classes.*',
+                'frontend.common.config.*',
                 'frontend.components.*',
                 'frontend.formModels.*',
 		),
