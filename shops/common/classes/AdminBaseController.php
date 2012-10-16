@@ -15,7 +15,6 @@ class AdminBaseController extends BaseController
     public function filters(){
         return array(
             'checkRole',
-            //'accessControl' ,
         );
     }
 

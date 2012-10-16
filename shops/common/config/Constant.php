@@ -29,5 +29,15 @@ class Constant
     {
         return 'assets/upload/shops/';
     }
+    
+    /**
+     * 手机端API合法性校验使用 key
+     */
+    const API_CHECK_KEY = "yangfeiyangwenyaoxianjinsunchangyu";
+    
+    /**
+     * 操作API成功code
+     */
+    const API_OPERATE_SUCCESS = 0;
 
 }

@@ -25,8 +25,8 @@ return array(
         'db'=>array(
             'connectionString' => 'mysql:host=localhost;dbname=shops',
             'emulatePrepare'   => true,
-            'username'          => 'root',
-            'password'          => 'lovelp',
+            'username'          => 'postfix',
+            'password'          => 'postfix',
             'charset'           => 'utf8',
         ),
         'urlManager'=>array(
