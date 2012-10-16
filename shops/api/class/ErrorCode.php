@@ -13,8 +13,13 @@ class ErrorCode {
 	private function __construct(){}
 	
 	/**
-	 * apikey校验错误，操作非法 
+	 * apikey校验错误
 	 */
 	const API_KEY_VALIDATE_ERROR = 1000;
+	
+	/**
+	 * 缺少checktime参数
+	 */
+	const API_MISSING_PARAM_CHECKTIME = 1001;
 	
 }

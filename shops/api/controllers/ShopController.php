@@ -1,4 +1,9 @@
 <?php
+/**
+ * 测试手机端API框架 
+ * 
+ * @author yaoxianjin
+ */
 class ShopController extends ApiBaseController {
 	
 	/**

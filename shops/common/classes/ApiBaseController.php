@@ -34,8 +34,12 @@ class ApiBaseController extends BaseController
 	 */
 	public function filterCheckKey($filterChain) 
 	{
+		$checkTime = $this->getRequestParam('checktime');
+		if( $checkTime === null ){
+			$this->returnErrorCode(ErrorCode::API_MISSING_PARAM_CHECKTIME);
+		}
 		$apikey = $this->getRequestParam('apikey');
-		if( $apikey != md5(Constant::API_CHECK_KEY) ) {
+		if( $apikey != md5( $checkTime . Constant::API_CHECK_KEY) ) {
 			$this->returnErrorCode(ErrorCode::API_KEY_VALIDATE_ERROR);
 		}	
 		$filterChain->run();
@@ -55,7 +59,7 @@ class ApiBaseController extends BaseController
 	/**
 	 * 返回成功响应
 	 *
-	 * @param $responseData array
+	 * @param mixed $responseData 
 	 */
 	public function returnSuccessResponse($responseData = null) 
 	{
