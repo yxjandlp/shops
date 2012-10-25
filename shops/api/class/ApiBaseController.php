@@ -63,7 +63,7 @@ class ApiBaseController extends BaseController
 	 */
 	public function returnSuccessResponse($responseData = null) 
 	{
-		$result = array ("returncode" => Constant::API_OPERATE_SUCCESS);
+		$result = array ("returncode" =>ErrorCode::API_OPERATE_SUCCESS);
 		if ($responseData !== null) {
 			$result ['response'] = $responseData;
 		}

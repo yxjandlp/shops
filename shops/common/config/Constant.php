@@ -35,9 +35,5 @@ class Constant
      */
     const API_CHECK_KEY = "yangfeiyangwenyaoxianjinsunchangyu";
     
-    /**
-     * 操作API成功code
-     */
-    const API_OPERATE_SUCCESS = 0;
 
 }

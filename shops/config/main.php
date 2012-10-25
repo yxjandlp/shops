@@ -23,10 +23,10 @@ return array(
             'loginUrl' => array('login/')
         ),
         'db'=>array(
-            'connectionString' => 'mysql:host=localhost;dbname=shops',
+            'connectionString' => 'mysql:host=localhost;dbname=s342777908',
             'emulatePrepare'   => true,
-            'username'          => 'postfix',
-            'password'          => 'postfix',
+            'username'          => 's342777908',
+            'password'          => 'wuhuawei',
             'charset'           => 'utf8',
         ),
         'urlManager'=>array(

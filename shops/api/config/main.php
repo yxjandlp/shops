@@ -13,8 +13,8 @@ return array(
 			'db'=>array(
 				'connectionString' => 'mysql:host=localhost;dbname=shops',
 				'emulatePrepare'   => true,
-				'username'          => 'postfix',
-				'password'          => 'postfix',
+				'username'          => 's342777908',
+				'password'          => 's342777908',
 				'charset'           => 'utf8',
 			),
 		),
