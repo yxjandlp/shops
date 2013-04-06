@@ -1,5 +1,5 @@
-帮同学做的一个展示商家的项目
+Just for fun
 ============================
-
-用 *php* 编写，采用 *[yii](http://www.yiiframework.com/ "yii")* 框架
-由于种种原因，没有做完。。。。。
+* *php*
+* *[yii](http://www.yiiframework.com/ "yii")* 
+* funning
